@@ -5,13 +5,9 @@
 #include "../headers/interface.h"
 
 int main(int argc, char const *argv[]){
-    system("cls");
-
     int option;
 
-    printf("\nJogo Snake em C\n\n");
-    printf("UFOP - AEDS I\n\n");
-    sleep(3);
+    gameInformations();
 
     do{
         mainMenu();
@@ -25,8 +21,7 @@ int main(int argc, char const *argv[]){
             break;
         case 2:
             system("cls");
-            printf("\nCRÉDITOS\n\n");
-            sleep(1);
+            creditsMenu();
             break;
         case 3:
             system("cls");
