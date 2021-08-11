@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <locale.h>
 
 #include "../headers/interface.h"
 
 int main(int argc, char const *argv[]){
+    setlocale(LC_ALL, "Portuguese");
+
     int option;
 
     gameInformations();
 
     do{
-        mainMenu();
-        printf("Informe a opcao: ");
-        scanf("%d", &option);
+        option = mainMenu();
         switch (option){
         case 1:
             system("cls");
