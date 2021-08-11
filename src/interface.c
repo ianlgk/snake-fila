@@ -28,7 +28,7 @@ int mainMenu(){
 
     system("cls");
     printf("                  SNAKE\n\n");
-    printf("   JOGAR        CREDITOS          SAIR");
+    printf("   JOGAR        CRÉDITOS          SAIR");
 
     do{
         gotoxy(x, y);
