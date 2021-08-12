@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <locale.h>
+#include "../headers/game.h"
 
 #include "../headers/interface.h"
 
 int main(int argc, char const *argv[]){
-    setlocale(LC_ALL, "Portuguese");
 
     int option;
 
@@ -16,8 +16,7 @@ int main(int argc, char const *argv[]){
         option = mainMenu();
         switch (option){
         case 1:
-            system("cls");
-            printf("\nJOGO\n\n");
+            execute();
             sleep(1);
             break;
         case 2:
