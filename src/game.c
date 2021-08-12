@@ -77,6 +77,15 @@ void gerarTela(){
     }
 
 }
+
+void insertFood () {
+    int y = (rand() % (VERTICAL-5))+3;
+    int x = (rand() % (HORIZONTAL-5))+3;
+    gotoxy(x,y);
+    geraCorAleatoria();
+    printf("%c",254);
+}
+
 int execute(){
     srand(time(NULL));
     int x;
@@ -84,19 +93,12 @@ int execute(){
     int y;
     gerarTela(HORIZONTAL,VERTICAL);
     
-    for (int i = 1; i < 100; i++){
-        y = (rand() % (VERTICAL-5))+3;
-        x = (rand() % (HORIZONTAL-5))+3;
-        gotoxy(x,y);
-        cor = geraCorAleatoria();
-        printf("%c",254);
+    while (1) {
+        insertFood();
         changeColorWhite();
         gotoxy(0,0);
-        printf("                        ");
-        gotoxy(0,0);
         printf("x %d y %d",x,y);
-        Sleep(1000-i*10);
+        Sleep(2000);
     }
-    
 }
 

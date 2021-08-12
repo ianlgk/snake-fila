@@ -11,7 +11,7 @@ void changeColorYellow();
 void changeColorPurple();
 void changeColorCyan();
 void changeColorWhite();
-
+void insertFood();
 int geraCorAleatoria();
 
 int execute();
