@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,97 +5,58 @@
 #include <windows.h>
 #include <locale.h>
 #include <time.h>
+
 #include "../headers/game.h"
 #include "../headers/interface.h"
+#include "../headers/customization.h"
 
-void changeColorGreen(){
-    printf("\033[0;32m");
-}
-void changeColorYellow(){
-    printf("\033[0;33m");
-}
-void changeColorPurple(){
-    printf("\033[0;35m");
-}
-void changeColorCyan(){
-    printf("\033[0;36m");
-}
-void changeColorWhite(){
-    printf("\033[0m");
-}
-void changeColorRed(){
-    printf("\033[0;31m");
-}
-int geraCorAleatoria(){
-    int cor =rand()%5;
-    switch (cor)
-    {
-    case 0:
-        changeColorRed();
-        break;
-    case 1:
-        changeColorYellow();
-        break;
-    case 2:
-        changeColorGreen();
-        break;
-    case 3:
-        changeColorPurple();
-        break;
-    case 4:
-        changeColorCyan();
-        break;
-    default:
-        changeColorWhite();
-        break;
-    }
-    return cor;
-
-}
-
-void gerarTela(){
+void printGround(){
     system("cls");
     printf("\n");
-    for(int i = 0; i<VERTICAL; i++){
+    for(int i = 0; i < height; i++){
            
-       for (int j = 0; j < HORIZONTAL; j++){
-           if(j==(HORIZONTAL-1)){
-                 printf("%c\n",219);
+       for (int j = 0; j < width; j++){
+           if(j==(width-1)){
+                 printf("%c\n",177);
                  continue;
             }
-            if(i==0||j==0||j==1||i==VERTICAL-1||j==HORIZONTAL-2){
-                printf("%c",219);
+            if(i==0||j==0||j==1||i==height-1||j==width-2){
+                printf("%c",177);
                 continue;
             }
             
             printf("%c",255);
-       }
-       
-       
-      
+       } 
     }
-
 }
-int execute(){
+
+void insertFood () {
+    int y = (rand() % (height-5))+3;
+    int x = (rand() % (width-5))+3;
+    gotoxy(x,y);
+    getRandomColor();
+    printf("%c",254);
+}
+
+int gameExe(){
     srand(time(NULL));
-    int x;
-    int cor;
-    int y;
-    gerarTela(HORIZONTAL,VERTICAL);
-    
-    for (int i = 1; i < 100; i++){
-        y = (rand() % (VERTICAL-5))+3;
-        x = (rand() % (HORIZONTAL-5))+3;
-        gotoxy(x,y);
-        cor = geraCorAleatoria();
-        printf("%c",254);
-        changeColorWhite();
-        gotoxy(0,0);
-        printf("                        ");
-        gotoxy(0,0);
-        printf("x %d y %d",x,y);
-        Sleep(1000-i*10);
-    }
-    
-}
 
+    int x, cor, y;
+
+    printGround(width,height);
+    
+    while (1) {
+        insertFood();
+        for (int i = 1; i < 10; i++){
+            y = (rand() % (height-5))+3;
+            x = (rand() % (width-5))+3;
+            gotoxy(x,y);
+            cor = getRandomColor();
+            printf("%c",254);
+            changeColorWhite();
+            gotoxy(0,0);
+            printf("x %d y %d",x,y);
+            Sleep(2000);
+        }
+    }   
+}

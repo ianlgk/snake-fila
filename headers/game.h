@@ -1,7 +1,8 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
-#define VERTICAL 20
-#define HORIZONTAL 100
+
+#define height 20             // define a altura do campo
+#define width 100           // define a largura do campo
 
 /* Functions */
 void gerarTela();//CRIAR
@@ -11,9 +12,11 @@ void changeColorYellow();
 void changeColorPurple();
 void changeColorCyan();
 void changeColorWhite();
+void insertFood();
+int getRandomColor();
 
-int geraCorAleatoria();
-
-int execute();
+/* Functions */
+void printGround();                 // printa o campo para a cobra anda
+int gameExe();                      // executa o jogo da cobra
 /* Functions */
 # endif /* INTERFACE_H_INCLUDED */
