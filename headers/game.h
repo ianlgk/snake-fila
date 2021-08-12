@@ -1,5 +1,7 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
+#define VERTICAL 20
+#define HORIZONTAL 100
 
 /* Functions */
 void gerarTela();//CRIAR

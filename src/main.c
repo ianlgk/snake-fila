@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]){
 
     gameInformations();
 
-    do{
+    do {
         option = mainMenu();
         switch (option){
         case 1:
