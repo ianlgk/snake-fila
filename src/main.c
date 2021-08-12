@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <locale.h>
-#include "../headers/game.h"
 
+#include "../headers/game.h"
 #include "../headers/interface.h"
 
 int main(int argc, char const *argv[]){
+    system("cls");
 
     int option;
 
-    gameInformations();
+    //gameInformations();
 
     do {
         option = mainMenu();
+        system("pause");
         switch (option){
         case 1:
-            execute();
+            gameExe();
             sleep(1);
             break;
         case 2:
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[]){
         case 3:
             system("cls");
             printf("\nFinalizando jogo...\n\n");
-            sleep(1);
+            sleep(2);
             break;
         default:
             break;
