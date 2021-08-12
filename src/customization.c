@@ -30,6 +30,10 @@ void changeColorWhite(){
     printf("\033[0m");
 }
 
+void changeColorBlack(){
+    printf("\033[0;30m");
+}
+
 void changeColorRed(){
     printf("\033[0;31m");
 }

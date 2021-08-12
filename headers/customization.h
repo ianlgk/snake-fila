@@ -10,6 +10,7 @@ void changeColorYellow();
 void changeColorPurple();
 void changeColorCyan();
 void changeColorWhite();
+void changeColorBlack();
 /* Geradores de Cores*/
 
 int getRandomColor();             // gera alguma cor aleatória

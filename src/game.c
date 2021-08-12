@@ -45,6 +45,18 @@ void insertFood() {
     printf("%c", 254);
 }
 
+void walkToPosition(int x, int y) {
+    gotoxy(x, y);
+    getRandomColor();
+    printf("%c",254);
+}
+
+void erasePosition(int x, int y) {
+    gotoxy(x, y);
+    changeColorBlack();
+    printf("%c",254);
+}
+
 int gameExe(char* nickname){
     system("cls");
 
@@ -54,8 +66,15 @@ int gameExe(char* nickname){
 
     gotoxy(3, 28);
 
-    for (int i = 0; i < 10; i++){
-        insertFood();
-        sleep(2);
+    while (1) {
+        //insertFood();
+        for (int i = 35; i < WIDTH - 2; i++){
+            walkToPosition(i, 5);
+            if (i != 35)
+                erasePosition(i-1, 5);
+            changeColorWhite();
+            Sleep(100);
+        }
+        erasePosition(WIDTH - 3, 5);
     }
 }

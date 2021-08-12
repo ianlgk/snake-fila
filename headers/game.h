@@ -6,6 +6,8 @@
 #define MURO 177                    // define o caractere para desenhar o muro
 
 /* Functions */
+void walkToPosition();
+void erasePosition();
 void insertFood();                  // printa uma comida aleatoria no campo
 void printGround();                 // printa o campo para a cobra andar
 int gameExe(char* nickname);        // executa o jogo da cobra
