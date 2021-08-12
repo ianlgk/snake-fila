@@ -2,6 +2,7 @@
 #define CUSTOMIZATION_H_INCLUDED
 
 /* Functions */
+
 /* Geradores de Cores*/
 void changeColorRed();      
 void changeColorGreen();
@@ -10,6 +11,7 @@ void changeColorPurple();
 void changeColorCyan();
 void changeColorWhite();
 /* Geradores de Cores*/
+
 int getRandomColor();             // gera alguma cor aleatória
 /* Functions */
 

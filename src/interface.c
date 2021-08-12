@@ -33,30 +33,36 @@ void gameInformations(){
 }
 
 int mainMenu(){
-    int tecla, x, y;
-    x = 0; y = 2;
+    int key, x, y;
+    x = 26; y = 20;
 
     system("cls");
     printBorders();
-    printTitle();/*
-    printf("                 SNAKE\n\n");
-    printf("   JOGAR        CREDITOS          SAIR");
+    printTitle();
+    gotoxy(28, 20);
+    printf(" JOGAR");
+    gotoxy(54, 20);
+    printf(" CREDITOS");
+    gotoxy(83, 20);
+    printf(" SAIR");
 
     do{
         gotoxy(x, y);
-        printf(">>");
-        gotoxy(0, 10);
-        tecla = getch();
-        switch(tecla){
+        changeColorGreen();
+        printf("%c", 175);
+        changeColorWhite();
+        gotoxy(3, 29);
+        key = getch();
+        switch(key){
             case 13:                                        // quando pressiona enter
                 switch(x){                                  // retorna a opçao
-                    case 0:
+                    case 26:
                         return 1;
                         break;
-                    case 13:
+                    case 52:
                         return 2;
                         break;
-                    case 32:
+                    case 81:
                         return 3;
                         break;
                     default:
@@ -64,30 +70,30 @@ int mainMenu(){
                 }
                 break;
             case 75:                                            // quando pressiona <-
-                if(x != 0){
-                    if(x == 32){
+                if(x != 26){
+                    if(x == 81){
                         gotoxy(x, y);
                         printf("  ");
-                        x -= 19;
+                        x -= 29;
                     } else{
                         gotoxy(x, y);
                         printf("  ");
-                        x -= 13;
+                        x -= 26;
                     }
                 } else {
                     // não faz nada, pois já está na borda
                 }
                 break;
             case 77:                                        // quando pressiona ->
-                if(x != 32){
-                    if(x == 0){
+                if(x != 81){
+                    if(x == 26){
                         gotoxy(x, y);
                         printf("  ");
-                        x += 13;
+                        x += 26;
                     } else{
                         gotoxy(x, y);
                         printf("  ");
-                        x += 19;
+                        x += 29;
                     }
                 } else {
                     // não faz nada, pois já está na borda
@@ -96,7 +102,7 @@ int mainMenu(){
             default:
                 break;
         }
-    } while(tecla != 13);*/
+    } while(key != 13);
     
     printf("\n\n");
 }
@@ -129,7 +135,7 @@ void creditsMenu(){
     changeColorWhite();
     printf("github.com/LeoMoreiraS/snake-fila");
     gotoxy(3, 29);
-    sleep(10);
+    sleep(5);
 }
 
 void printBorders(){
@@ -166,31 +172,277 @@ void printBorders(){
 void printTitle(){
     // Bordas do título
     changeColorRed();
-    for (int i = 5; i < 80; i++){
-        gotoxy(i, 4);
+    for (int i = 22; i < 96; i++){
+        gotoxy(i, 7);
         printf("%c", 219);
     }
     
-    for (int i = 5; i < 15; i++){
-        gotoxy(5, i);
+    for (int i = 7; i < 18; i++){
+        gotoxy(22, i);
         printf("%c", 219);
-        gotoxy(80 - 1, i);
+        gotoxy(96 - 1, i);
         printf("%c\n", 219);
     }
     
-    for (int i = 5; i < 80; i++){
-        gotoxy(i, 14);
+    for (int i = 22; i < 96; i++){
+        gotoxy(i, 17);
         printf("%c", 219);
     }
 
     // Preencher o background do título
     changeColorCyan();
-    for (int i = 6; i < 79; i++){
-        for (int j = 5; j < 14; j++){
+    for (int i = 23; i < 95; i++){
+        for (int j = 8; j < 17; j++){
             gotoxy(i, j);
             printf("%c", 219);
         }
-    }   
+    }
 
+    // Escrever SNAKE
     changeColorWhite();
+    // S
+    gotoxy(26, 14);
+    printf("%c", 219);
+    gotoxy(27, 15);
+    printf("%c", 219);
+    gotoxy(28, 15);
+    printf("%c", 219);
+    gotoxy(29, 15);
+    printf("%c", 219);
+    gotoxy(30, 14);
+    printf("%c", 219);
+    gotoxy(30, 13);
+    printf("%c", 219);
+    gotoxy(30, 14);
+    printf("%c", 219);
+    gotoxy(29, 12);
+    printf("%c", 219);
+    gotoxy(28, 12);
+    printf("%c", 219);
+    gotoxy(27, 12);
+    printf("%c", 219);
+    gotoxy(26, 11);
+    printf("%c", 219);
+    gotoxy(26, 10);
+    printf("%c", 219);
+    gotoxy(27, 9);
+    printf("%c", 219);
+    gotoxy(28, 9);
+    printf("%c", 219);
+    gotoxy(29, 9);
+    printf("%c", 219);
+    gotoxy(30, 10);
+    printf("%c", 219);
+    // S
+
+    // N
+    gotoxy(33, 9);
+    printf("%c", 219);
+    gotoxy(33, 10);
+    printf("%c", 219);
+    gotoxy(33, 11);
+    printf("%c", 219);
+    gotoxy(33, 12);
+    printf("%c", 219);
+    gotoxy(33, 13);
+    printf("%c", 219);
+    gotoxy(33, 14);
+    printf("%c", 219);
+    gotoxy(33, 15);
+    printf("%c", 219);
+    gotoxy(34, 10);
+    printf("%c", 219);
+    gotoxy(35, 11);
+    printf("%c", 219);
+    gotoxy(36, 12);
+    printf("%c", 219);
+    gotoxy(37, 13);
+    printf("%c", 219);
+    gotoxy(38, 14);
+    printf("%c", 219);
+    gotoxy(39, 15);
+    printf("%c", 219);
+    gotoxy(39, 14);
+    printf("%c", 219);
+    gotoxy(39, 13);
+    printf("%c", 219);
+    gotoxy(39, 12);
+    printf("%c", 219);
+    gotoxy(39, 11);
+    printf("%c", 219);
+    gotoxy(39, 10);
+    printf("%c", 219);
+    gotoxy(39, 9);
+    printf("%c", 219);
+    // N
+
+    // A
+    gotoxy(42, 15);
+    printf("%c", 219);
+    gotoxy(42, 14);
+    printf("%c", 219);
+    gotoxy(42, 13);
+    printf("%c", 219);
+    gotoxy(43, 13);
+    printf("%c", 219);
+    gotoxy(44, 13);
+    printf("%c", 219);
+    gotoxy(45, 13);
+    printf("%c", 219);
+    gotoxy(46, 13);
+    printf("%c", 219);
+    gotoxy(47, 13);
+    printf("%c", 219);
+    gotoxy(48, 13);
+    printf("%c", 219);
+    gotoxy(48, 15);
+    printf("%c", 219);
+    gotoxy(48, 14);
+    printf("%c", 219);
+    gotoxy(48, 12);
+    printf("%c", 219);
+    gotoxy(42, 12);
+    printf("%c", 219);
+    gotoxy(47, 11);
+    printf("%c", 219);
+    gotoxy(43, 11);
+    printf("%c", 219);
+    gotoxy(46, 10);
+    printf("%c", 219);
+    gotoxy(44, 10);
+    printf("%c", 219);
+    gotoxy(45, 9);
+    printf("%c", 219);
+    // A
+    // K
+    gotoxy(51, 9);
+    printf("%c", 219);
+    gotoxy(51, 10);
+    printf("%c", 219);
+    gotoxy(51, 11);
+    printf("%c", 219);
+    gotoxy(51, 12);
+    printf("%c", 219);
+    gotoxy(51, 13);
+    printf("%c", 219);
+    gotoxy(51, 14);
+    printf("%c", 219);
+    gotoxy(51, 15);
+    printf("%c", 219);
+    gotoxy(52, 12);
+    printf("%c", 219);
+    gotoxy(53, 12);
+    printf("%c", 219);
+    gotoxy(54, 11);
+    printf("%c", 219);
+    gotoxy(55, 10);
+    printf("%c", 219);
+    gotoxy(56, 9);
+    printf("%c", 219);
+    gotoxy(54, 13);
+    printf("%c", 219);
+    gotoxy(55, 14);
+    printf("%c", 219);
+    gotoxy(56, 15);
+    printf("%c", 219);
+    // K
+
+    // E
+    gotoxy(59, 15);
+    printf("%c", 219);
+    gotoxy(59, 14);
+    printf("%c", 219);
+    gotoxy(59, 13);
+    printf("%c", 219);
+    gotoxy(59, 12);
+    printf("%c", 219);
+    gotoxy(59, 11);
+    printf("%c", 219);
+    gotoxy(59, 10);
+    printf("%c", 219);
+    gotoxy(59, 9);
+    printf("%c", 219);
+    gotoxy(60, 15);
+    printf("%c", 219);
+    gotoxy(61, 15);
+    printf("%c", 219);
+    gotoxy(62, 15);
+    printf("%c", 219);
+    gotoxy(63, 15);
+    printf("%c", 219);
+    gotoxy(64, 15);
+    printf("%c", 219);
+    gotoxy(60, 9);
+    printf("%c", 219);
+    gotoxy(61, 9);
+    printf("%c", 219);
+    gotoxy(62, 9);
+    printf("%c", 219);
+    gotoxy(63, 9);
+    printf("%c", 219);
+    gotoxy(64, 9);
+    printf("%c", 219);
+    gotoxy(60, 12);
+    printf("%c", 219);
+    gotoxy(61, 12);
+    printf("%c", 219);
+    gotoxy(62, 12);
+    printf("%c", 219);
+    gotoxy(63, 12);
+    printf("%c", 219);
+    // E
+
+    // -
+    gotoxy(71, 12);
+    printf("%c", 219);
+    gotoxy(72, 12);
+    printf("%c", 219);
+    gotoxy(73, 12);
+    printf("%c", 219);
+    gotoxy(74, 12);
+    printf("%c", 219);
+    gotoxy(75, 12);
+    printf("%c", 219);
+    gotoxy(76, 12);
+    printf("%c", 219);
+    gotoxy(77, 12);
+    printf("%c", 219);
+    // -
+
+    // C
+    gotoxy(86, 15);
+    printf("%c", 219);
+    gotoxy(87, 15);
+    printf("%c", 219);
+    gotoxy(88, 15);
+    printf("%c", 219);
+    gotoxy(89, 15);
+    printf("%c", 219);
+    gotoxy(90, 15);
+    printf("%c", 219);
+    gotoxy(85, 14);
+    printf("%c", 219);
+    gotoxy(84, 13);
+    printf("%c", 219);
+    gotoxy(84, 12);
+    printf("%c", 219);
+    gotoxy(84, 11);
+    printf("%c", 219);
+    gotoxy(85, 10);
+    printf("%c", 219);
+    gotoxy(86, 9);
+    printf("%c", 219);
+    gotoxy(87, 9);
+    printf("%c", 219);
+    gotoxy(88, 9);
+    printf("%c", 219);
+    gotoxy(89, 9);
+    printf("%c", 219);
+    gotoxy(90, 9);
+    printf("%c", 219);
+    gotoxy(91, 14);
+    printf("%c", 219);
+    gotoxy(91, 10);
+    printf("%c", 219);
+    // C
 }

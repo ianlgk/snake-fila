@@ -13,14 +13,14 @@
 void printGround(){
     system("cls");
     printf("\n");
-    for(int i = 0; i < height; i++){
+    for(int i = 0; i < HEIGHT; i++){
            
-       for (int j = 0; j < width; j++){
-           if(j==(width-1)){
+       for (int j = 0; j < WIDTH; j++){
+           if(j==(WIDTH-1)){
                  printf("%c\n",177);
                  continue;
             }
-            if(i==0||j==0||j==1||i==height-1||j==width-2){
+            if(i==0||j==0||j==1||i==HEIGHT-1||j==WIDTH-2){
                 printf("%c",177);
                 continue;
             }
@@ -31,8 +31,8 @@ void printGround(){
 }
 
 void insertFood () {
-    int y = (rand() % (height-5))+3;
-    int x = (rand() % (width-5))+3;
+    int y = (rand() % (HEIGHT-5))+3;
+    int x = (rand() % (WIDTH-5))+3;
     gotoxy(x,y);
     getRandomColor();
     printf("%c",254);
@@ -41,17 +41,17 @@ void insertFood () {
 int gameExe(){
     srand(time(NULL));
 
-    int x, cor, y;
+    int x, color, y;
 
-    printGround(width,height);
+    printGround(WIDTH,HEIGHT);
     
     while (1) {
         insertFood();
         for (int i = 1; i < 10; i++){
-            y = (rand() % (height-5))+3;
-            x = (rand() % (width-5))+3;
+            y = (rand() % (HEIGHT-5))+3;
+            x = (rand() % (WIDTH-5))+3;
             gotoxy(x,y);
-            cor = getRandomColor();
+            color = getRandomColor();
             printf("%c",254);
             changeColorWhite();
             gotoxy(0,0);
