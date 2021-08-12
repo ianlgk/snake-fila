@@ -9,27 +9,32 @@ int main(int argc, char const *argv[]){
     system("cls");
 
     int option;
+    char nickname[30];
 
     gameInformations();
 
     do {
         option = mainMenu();
         switch (option){
-        case 1:
-            gameExe();
-            sleep(1);
-            break;
-        case 2:
-            system("cls");
-            creditsMenu();
-            break;
-        case 3:
-            system("cls");
-            printf("Finalizando jogo...\n\n");
-            sleep(2);
-            break;
-        default:
-            break;
+            case 1:
+                gotoxy(45, 20);
+                printf("Informe o seu nick: ");
+                gotoxy(65, 20);
+                fgets(nickname, 30, stdin);
+                nickname[sizeof(nickname) - 1] = '\0';
+                gameExe(nickname);
+                sleep(1);
+                break;
+            case 2:
+                creditsMenu();
+                break;
+            case 3:
+                system("cls");
+                printf("Finalizando jogo...\n\n");
+                sleep(3);
+                break;
+            default:
+                break;
         }
     } while(option != 3);
 

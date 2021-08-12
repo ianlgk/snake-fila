@@ -3,18 +3,10 @@
 #include <unistd.h>
 #include <conio.h>
 #include <windows.h>
-#include <locale.h>
 
-#include "../headers/interface.h"
 #include "../headers/game.h"
+#include "../headers/interface.h"
 #include "../headers/customization.h"
-
-void gotoxy(int x, int y){
-    COORD c;
-    c.X = x;
-    c.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
-}
 
 void gameInformations(){
     system("cls");
@@ -28,13 +20,13 @@ void gameInformations(){
     gotoxy(57, 15);
     changeColorWhite();
     printf("- AEDS I");
-    gotoxy(3, 29);
+    gotoxy(3, 28);
     sleep(3);
 }
 
 int mainMenu(){
     int key, x, y;
-    x = 26; y = 20;
+    x = 27; y = 20;
 
     system("cls");
     printBorders();
@@ -51,18 +43,26 @@ int mainMenu(){
         changeColorGreen();
         printf("%c", 175);
         changeColorWhite();
-        gotoxy(3, 29);
+        gotoxy(3, 28);
         key = getch();
         switch(key){
             case 13:                                        // quando pressiona enter
-                switch(x){                                  // retorna a opçao
-                    case 26:
+                switch(x){                                  // retorna a opção selecionada
+                    case 27:
+                        gotoxy(27, 20);
+                        printf("       ");
+                        gotoxy(83, 20);
+                        printf("      ");
+                        gotoxy(43, 20);
+                        changeColorGreen();
+                        printf("%c", 175);
+                        changeColorWhite();
                         return 1;
                         break;
-                    case 52:
+                    case 53:
                         return 2;
                         break;
-                    case 81:
+                    case 82:
                         return 3;
                         break;
                     default:
@@ -70,8 +70,8 @@ int mainMenu(){
                 }
                 break;
             case 75:                                            // quando pressiona <-
-                if(x != 26){
-                    if(x == 81){
+                if(x != 27){
+                    if(x == 82){
                         gotoxy(x, y);
                         printf("  ");
                         x -= 29;
@@ -85,8 +85,8 @@ int mainMenu(){
                 }
                 break;
             case 77:                                        // quando pressiona ->
-                if(x != 81){
-                    if(x == 26){
+                if(x != 82){
+                    if(x == 27){
                         gotoxy(x, y);
                         printf("  ");
                         x += 26;
@@ -105,68 +105,6 @@ int mainMenu(){
     } while(key != 13);
     
     printf("\n\n");
-}
-
-void creditsMenu(){
-    system("cls");
-    printBorders();
-    gotoxy(34, 9);
-    changeColorRed();
-    printf("UFOP");
-    gotoxy(39, 9);
-    changeColorWhite();
-    printf("- Algoritmos e Estruturas de Dados I / 2021");
-    gotoxy(49, 11);
-    printf("Desenvolvido por:");
-    gotoxy(38, 13);
-    printf("20.1 | S.I - Ian Langkammer Batista");
-    gotoxy(38, 14);
-    printf("20.1 | S.I - Leonardo Moreira Sepulveda");
-    gotoxy(38, 15);
-    printf("20.1 | S.I - Rafael Caetano Texeira");
-    gotoxy(38, 16);
-    printf("20.1 | S.I - Victor Gabriel Siqueira Moura");
-    gotoxy(38, 17);
-    printf("18.1 | E.P - Paulo Cesar de Freitas Lagares");
-    gotoxy(36, 19);
-    changeColorCyan();
-    printf("Repositorio:");
-    gotoxy(49, 19);
-    changeColorWhite();
-    printf("github.com/LeoMoreiraS/snake-fila");
-    gotoxy(3, 29);
-    sleep(5);
-}
-
-void printBorders(){
-    changeColorWhite();
-
-    for (int i = 3; i < BORDER_WIDTH; i++){
-        gotoxy(i, 2);
-        if(i == 3)
-            printf("%c", 201);
-        else if(i + 1 == BORDER_WIDTH)
-            printf("%c", 187);
-        else
-            printf("%c", 205);
-    }
-
-    for (int i = 3; i < BORDER_HEIGHT + 3; i++){
-        gotoxy(3, i);
-        printf("%c", 186);
-        gotoxy(BORDER_WIDTH - 1, i);
-        printf("%c\n", 186);
-    }
-
-    for (int i = 3; i < BORDER_WIDTH; i++){
-        gotoxy(i, BORDER_HEIGHT + 2);
-        if(i == 3)
-            printf("%c", 200);
-        else if(i + 1 == BORDER_WIDTH)
-            printf("%c", 188);
-        else
-            printf("%c", 205);
-    }
 }
 
 void printTitle(){
@@ -445,4 +383,106 @@ void printTitle(){
     gotoxy(91, 10);
     printf("%c", 219);
     // C
+}
+
+void creditsMenu(){
+    system("cls");
+    printBorders();
+    gotoxy(34, 9);
+    changeColorRed();
+    printf("UFOP");
+    gotoxy(39, 9);
+    changeColorWhite();
+    printf("- Algoritmos e Estruturas de Dados I / 2021");
+    gotoxy(49, 11);
+    printf("Desenvolvido por:");
+    gotoxy(38, 13);
+    printf("20.1 | S.I - Ian Langkammer Batista");
+    gotoxy(38, 14);
+    printf("20.1 | S.I - Leonardo Moreira Sepulveda");
+    gotoxy(38, 15);
+    printf("20.1 | S.I - Rafael Caetano Texeira");
+    gotoxy(38, 16);
+    printf("20.1 | S.I - Victor Gabriel Siqueira Moura");
+    gotoxy(38, 17);
+    printf("18.1 | E.P - Paulo Cesar de Freitas Lagares");
+    gotoxy(36, 19);
+    changeColorCyan();
+    printf("Repositorio:");
+    gotoxy(49, 19);
+    changeColorWhite();
+    printf("github.com/LeoMoreiraS/snake-fila");
+    gotoxy(3, 28);
+    sleep(5);
+}
+
+void printBorders(){
+    changeColorWhite();
+
+    for (int i = 3; i < BORDER_WIDTH; i++){
+        gotoxy(i, 2);
+        if(i == 3)
+            printf("%c", 201);
+        else if(i + 1 == BORDER_WIDTH)
+            printf("%c", 187);
+        else
+            printf("%c", 205);
+    }
+
+    for (int i = 3; i < BORDER_HEIGHT + 3; i++){
+        gotoxy(3, i);
+        printf("%c", 186);
+        gotoxy(BORDER_WIDTH - 1, i);
+        printf("%c\n", 186);
+    }
+
+    for (int i = 3; i < BORDER_WIDTH; i++){
+        gotoxy(i, BORDER_HEIGHT + 2);
+        if(i == 3)
+            printf("%c", 200);
+        else if(i + 1 == BORDER_WIDTH)
+            printf("%c", 188);
+        else
+            printf("%c", 205);
+    }
+}
+
+void printInfosGrid(){
+    gotoxy(6, 4);
+    printf("%c", 201);
+
+    // Printa limite superior
+    for (int i = 7; i < 31; i++){
+        gotoxy(i , 4);
+        printf("%c", 205);
+    }
+
+    gotoxy(31, 4);
+    printf("%c", 187);
+    gotoxy(6, 25);
+    printf("%c", 200);
+
+    // Printa os limites laterais
+    for (int i = 5; i < 25; i++){
+        gotoxy(6, i);
+        printf("%c", 186);
+        gotoxy(31, i);
+        printf("%c", 186);
+    }
+    
+    gotoxy(31, 25);
+    printf("%c", 188);
+
+    // Printa o limite inferior
+    for (int i = 7; i < 31; i++){
+        gotoxy(i , 25);
+        printf("%c", 205);
+    }
+}
+
+void gotoxy(int x, int y){
+    COORD c;
+    c.X = x;
+    c.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }

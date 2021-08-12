@@ -6,6 +6,10 @@
 #include <locale.h>
 #include <time.h>
 
+#include "../headers/game.h"
+#include "../headers/interface.h"
+#include "../headers/customization.h"
+
 void changeColorGreen(){
     printf("\033[0;32m");
 }
