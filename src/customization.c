@@ -31,8 +31,8 @@ void changeColorRed(){
 }
 
 int getRandomColor(){
-    int cor =rand()%5;
-    switch (cor)
+    int color =rand()%5;
+    switch (color)
     {
     case 0:
         changeColorRed();
@@ -53,5 +53,5 @@ int getRandomColor(){
         changeColorWhite();
         break;
     }
-    return cor;
+    return color;
 }

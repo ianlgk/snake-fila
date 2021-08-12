@@ -10,11 +10,10 @@ int main(int argc, char const *argv[]){
 
     int option;
 
-    //gameInformations();
+    gameInformations();
 
     do {
         option = mainMenu();
-        system("pause");
         switch (option){
         case 1:
             gameExe();
@@ -26,7 +25,7 @@ int main(int argc, char const *argv[]){
             break;
         case 3:
             system("cls");
-            printf("\nFinalizando jogo...\n\n");
+            printf("Finalizando jogo...\n\n");
             sleep(2);
             break;
         default:
