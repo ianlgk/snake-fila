@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <conio.h>
 #include <windows.h>
@@ -11,52 +12,50 @@
 #include "../headers/customization.h"
 
 void printGround(){
-    system("cls");
-    printf("\n");
-    for(int i = 0; i < HEIGHT; i++){
-           
-       for (int j = 0; j < WIDTH; j++){
-           if(j==(WIDTH-1)){
-                 printf("%c\n",177);
-                 continue;
-            }
-            if(i==0||j==0||j==1||i==HEIGHT-1||j==WIDTH-2){
-                printf("%c",177);
-                continue;
-            }
-            
-            printf("%c",255);
-       } 
+    // Printa o limite superior do campo
+    for (int i = 34; i < WIDTH + 25; i++){
+        gotoxy(i, 3);
+        printf("%c", MURO);
+    }
+
+    // Printa os limites laterais do campo
+    for (int i = 4; i < HEIGHT + 3; i++){
+        gotoxy(34, i);
+        printf("%c", MURO);
+        gotoxy(113, i);
+        printf("%c", MURO);
+    }
+    
+    // Printa o limite inferior do campo
+    for (int i = 34; i < WIDTH + 25; i++){
+        gotoxy(i, 26);
+        printf("%c", MURO);
     }
 }
 
-void insertFood () {
-    int y = (rand() % (HEIGHT-5))+3;
-    int x = (rand() % (WIDTH-5))+3;
-    gotoxy(x,y);
+void insertFood() {
+    srand(time(NULL));
+    int y = (rand() % (HEIGHT - 5)) + 3;
+    int x = (rand() % (WIDTH - 5)) + 3;
+    gotoxy(0, 0);
+    changeColorWhite();
+    printf("x = %d, y = %d", x, y);
+    gotoxy(x, y);
     getRandomColor();
-    printf("%c",254);
+    printf("%c", 254);
 }
 
-int gameExe(){
-    srand(time(NULL));
+int gameExe(char* nickname){
+    system("cls");
 
-    int x, color, y;
+    printBorders();
+    printInfosGrid();
+    printGround();
 
-    printGround(WIDTH,HEIGHT);
-    
-    while (1) {
+    gotoxy(3, 28);
+
+    for (int i = 0; i < 10; i++){
         insertFood();
-        for (int i = 1; i < 10; i++){
-            y = (rand() % (HEIGHT-5))+3;
-            x = (rand() % (WIDTH-5))+3;
-            gotoxy(x,y);
-            color = getRandomColor();
-            printf("%c",254);
-            changeColorWhite();
-            gotoxy(0,0);
-            printf("x %d y %d",x,y);
-            Sleep(2000);
-        }
-    }   
+        sleep(2);
+    }
 }
