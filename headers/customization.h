@@ -3,7 +3,7 @@
 
 /* Functions */
 
-/* Geradores de Cores*/
+/* Geradores de Cores */
 void changeColorRed();      
 void changeColorGreen();
 void changeColorYellow();
@@ -11,7 +11,8 @@ void changeColorPurple();
 void changeColorCyan();
 void changeColorWhite();
 void changeColorBlack();
-/* Geradores de Cores*/
+void changeColorBgGreen();
+/* Geradores de Cores */
 
 int getRandomColor();             // gera alguma cor aleatória
 /* Functions */

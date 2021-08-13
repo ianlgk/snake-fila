@@ -38,6 +38,10 @@ void changeColorRed(){
     printf("\033[0;31m");
 }
 
+void changeColorBgGreen(){
+    printf("\e[42m");
+}
+
 int getRandomColor(){
     int color =rand()%5;
     switch (color)

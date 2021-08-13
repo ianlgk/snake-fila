@@ -11,14 +11,15 @@
 #include "../headers/customization.h"
 
 void printGround(){
+    changeColorRed();
     // Printa o limite superior do campo
     for (int i = 34; i < WIDTH + 25; i++){
-        gotoxy(i, 3);
+        gotoxy(i, 4);
         printf("%c", MURO);
     }
 
     // Printa os limites laterais do campo
-    for (int i = 4; i < HEIGHT + 3; i++){
+    for (int i = 5; i < HEIGHT + 2; i++){
         gotoxy(34, i);
         printf("%c", MURO);
         gotoxy(24+WIDTH, i);
@@ -27,15 +28,15 @@ void printGround(){
     
     // Printa o limite inferior do campo
     for (int i = 34; i < WIDTH + 25; i++){
-        gotoxy(i, 26);
+        gotoxy(i, 25);
         printf("%c", MURO);
     }
 }
 
 void insertFood(int *x,int *y) {
     srand(time(NULL));
-    *y = (rand() % (HEIGHT - 1)) + 4;
-    *x = (rand() % (WIDTH - 12)) + 35;
+    *y = (rand() % (HEIGHT)) + 3;
+    *x = (rand() % (WIDTH - 13)) + 36;
     gotoxy(0, 0);
     changeColorWhite();
     printf("x = %d, y = %d", *x, *y);
@@ -57,14 +58,14 @@ void erasePosition(int x, int y) {
 }
 
 int gameExe(char* nickname){
-    int foodX,foodY,x=35,y=4;
+    int foodX,foodY, x = 35, y = 4, score = 4550, nFoods = 12;
+  
     system("cls");
 
     printBorders();
     printInfosGrid();
+    printInfosInGame(nickname, score, nFoods);
     printGround();
-
-    gotoxy(3, 28);
     
     while (1) {
         
@@ -74,7 +75,6 @@ int gameExe(char* nickname){
             if (x != 35)
                 erasePosition(x-1, y);
             changeColorWhite();
-            Sleep(100);
         }
         erasePosition(WIDTH + 23, y);
         x = 35;

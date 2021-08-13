@@ -9,7 +9,7 @@ int main(int argc, char const *argv[]){
     system("cls");
 
     int option;
-    char nickname[30];
+    char nickname[14];
 
     gameInformations();
 
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]){
                 gotoxy(45, 20);
                 printf("Informe o seu nick: ");
                 gotoxy(65, 20);
-                fgets(nickname, 30, stdin);
+                fgets(nickname, 14, stdin);
                 nickname[sizeof(nickname) - 1] = '\0';
                 gameExe(nickname);
                 Sleep(1000);
