@@ -67,8 +67,8 @@ int gameExe(char* nickname){
     
     while (1) {
         
-        for (int i = 35; i < WIDTH +33; i++){
-            insertFood();
+        insertFood();
+        for (int i = 35; i < WIDTH +24; i++){
             walkToPosition(i, 5);
             if (i != 35)
                 erasePosition(i-1, 5);
