@@ -463,10 +463,33 @@ void printInfosGrid(){
 
     // Printa os limites laterais
     for (int i = 5; i < 25; i++){
-        gotoxy(6, i);
-        printf("%c", 186);
-        gotoxy(31, i);
-        printf("%c", 186);
+        // Printa as bordas com saídas laterais
+        switch(i){
+            case 8:
+                gotoxy(6, i);
+                printf("%c", 204);
+                gotoxy(31, i);
+                printf("%c", 185);
+                break;
+            case 12:
+                gotoxy(6, i);
+                printf("%c", 204);
+                gotoxy(31, i);
+                printf("%c", 185);
+                break;
+            case 16:
+                gotoxy(6, i);
+                printf("%c", 204);
+                gotoxy(31, i);
+                printf("%c", 185);
+                break;
+            default:
+                gotoxy(6, i);
+                printf("%c", 186);
+                gotoxy(31, i);
+                printf("%c", 186);
+                break;
+        }
     }
     
     gotoxy(31, 25);
@@ -477,6 +500,62 @@ void printInfosGrid(){
         gotoxy(i , 25);
         printf("%c", 205);
     }
+
+    // Printa divisão de informações
+    for (int i = 7; i < 31; i++){
+        gotoxy(i, 8);
+        printf("%c", 205);
+    }
+
+    for (int i = 7; i < 31; i++){
+        gotoxy(i, 12);
+        printf("%c", 205);
+    }
+
+    for (int i = 7; i < 31; i++){
+        gotoxy(i, 16);
+        printf("%c", 205);
+    }
+
+    for (int i = 7; i < 31; i++){
+        gotoxy(i, 23);
+        printf("%c", 205);
+    }
+
+    // Printa as labels
+    gotoxy(8, 24);
+    changeColorGreen();
+    printf("Thanks for playing  :)");
+    gotoxy(13, 6);
+    changeColorRed();
+    printf("UFOP");
+    changeColorWhite();
+    gotoxy(17, 6);
+    printf(" - AEDS I");
+    gotoxy(8, 10);
+    printf("Player: ");
+    gotoxy(8,14);
+    printf(" SCORE ");
+    gotoxy(14, 19);
+    printf("SNAKE SIZE");
+}
+
+void printInfosInGame(char* nickname, int score, int nFoods){
+    gotoxy(17, 10);
+    printf("%s", nickname);
+    
+    gotoxy(17, 14);
+    printf("%d", score);
+
+    gotoxy(17, 20);
+    if(nFoods >= 1000)
+        printf("%d", nFoods);
+    else if(nFoods >= 100)
+        printf("0%d", nFoods);
+    else if(nFoods >= 10)
+        printf("00%d", nFoods);
+    else
+        printf("000%d", nFoods);
 }
 
 void gotoxy(int x, int y){
