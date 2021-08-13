@@ -57,7 +57,7 @@ void erasePosition(int x, int y) {
 }
 
 int gameExe(char* nickname){
-    int foodX,foodY;
+    int foodX,foodY,x=35,y=4;
     system("cls");
 
     printBorders();
@@ -69,13 +69,15 @@ int gameExe(char* nickname){
     while (1) {
         
         insertFood(&foodX,&foodY);
-        for (int i = 35; i < WIDTH +24; i++){
-            walkToPosition(i, 5);
-            if (i != 35)
-                erasePosition(i-1, 5);
+        for (x; x < WIDTH +24; x++){
+            walkToPosition(x, y);
+            if (x != 35)
+                erasePosition(x-1, y);
             changeColorWhite();
             Sleep(100);
         }
-        erasePosition(WIDTH - 3, 5);
+        erasePosition(WIDTH + 23, y);
+        x = 35;
+        y = 4;
     }
 }
