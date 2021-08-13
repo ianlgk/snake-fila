@@ -32,14 +32,14 @@ void printGround(){
     }
 }
 
-void insertFood() {
+void insertFood(int *x,int *y) {
     srand(time(NULL));
-    int y = (rand() % (HEIGHT - 1)) + 4;
-    int x = (rand() % (WIDTH - 12)) + 35;
+    *y = (rand() % (HEIGHT - 1)) + 4;
+    *x = (rand() % (WIDTH - 12)) + 35;
     gotoxy(0, 0);
     changeColorWhite();
-    printf("x = %d, y = %d", x, y);
-    gotoxy(x, y);
+    printf("x = %d, y = %d", *x, *y);
+    gotoxy(*x, *y);
     getRandomColor();
     printf("%c", 254);
 }
@@ -57,6 +57,7 @@ void erasePosition(int x, int y) {
 }
 
 int gameExe(char* nickname){
+    int foodX,foodY;
     system("cls");
 
     printBorders();
@@ -67,7 +68,7 @@ int gameExe(char* nickname){
     
     while (1) {
         
-        insertFood();
+        insertFood(&foodX,&foodY);
         for (int i = 35; i < WIDTH +24; i++){
             walkToPosition(i, 5);
             if (i != 35)
