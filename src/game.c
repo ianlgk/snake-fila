@@ -53,7 +53,7 @@ void walkToPosition(int x, int y) {
 void erasePosition(int x, int y) {
     gotoxy(x, y);
     changeColorBlack();
-    printf("%c",254);
+    printf("%c",255);
 }
 
 int gameExe(char* nickname){
