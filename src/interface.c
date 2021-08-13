@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <conio.h>
 #include <windows.h>
 
@@ -21,7 +20,7 @@ void gameInformations(){
     changeColorWhite();
     printf("- AEDS I");
     gotoxy(3, 28);
-    sleep(3);
+    Sleep(3000);
 }
 
 int mainMenu(){
@@ -413,7 +412,7 @@ void creditsMenu(){
     changeColorWhite();
     printf("github.com/LeoMoreiraS/snake-fila");
     gotoxy(3, 28);
-    sleep(5);
+    Sleep(5000);
 }
 
 void printBorders(){

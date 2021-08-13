@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <windows.h>
 
 #include "../headers/game.h"
 #include "../headers/interface.h"
@@ -23,7 +23,7 @@ int main(int argc, char const *argv[]){
                 fgets(nickname, 30, stdin);
                 nickname[sizeof(nickname) - 1] = '\0';
                 gameExe(nickname);
-                sleep(1);
+                Sleep(1000);
                 break;
             case 2:
                 creditsMenu();

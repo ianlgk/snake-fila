@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <conio.h>
 #include <windows.h>
 #include <locale.h>
@@ -22,7 +21,7 @@ void printGround(){
     for (int i = 4; i < HEIGHT + 3; i++){
         gotoxy(34, i);
         printf("%c", MURO);
-        gotoxy(113, i);
+        gotoxy(24+WIDTH, i);
         printf("%c", MURO);
     }
     
@@ -35,8 +34,8 @@ void printGround(){
 
 void insertFood() {
     srand(time(NULL));
-    int y = (rand() % (HEIGHT - 5)) + 3;
-    int x = (rand() % (WIDTH - 5)) + 3;
+    int y = (rand() % (HEIGHT - 1)) + 4;
+    int x = (rand() % (WIDTH - 12)) + 35;
     gotoxy(0, 0);
     changeColorWhite();
     printf("x = %d, y = %d", x, y);
@@ -65,10 +64,11 @@ int gameExe(char* nickname){
     printGround();
 
     gotoxy(3, 28);
-
+    
     while (1) {
-        //insertFood();
-        for (int i = 35; i < WIDTH - 2; i++){
+        
+        for (int i = 35; i < WIDTH +33; i++){
+            insertFood();
             walkToPosition(i, 5);
             if (i != 35)
                 erasePosition(i-1, 5);
