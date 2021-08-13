@@ -9,7 +9,6 @@
 void walkToPosition();
 void erasePosition();
 void insertFood(int *x,int *y);     // printa uma comida aleatoria no campo
-void printGround();                 // printa o campo para a cobra andar
 int gameExe(char* nickname);        // executa o jogo da cobra
 /* Functions */
 
