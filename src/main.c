@@ -31,7 +31,7 @@ int main(int argc, char const *argv[]){
             case 3:
                 system("cls");
                 printf("Finalizando jogo...\n\n");
-                sleep(3);
+                Sleep(3000);
                 break;
             default:
                 break;
