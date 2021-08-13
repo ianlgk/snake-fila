@@ -12,7 +12,7 @@
 
 void insertFood(int *x,int *y) {
     srand(time(NULL));
-    *y = (rand() % (HEIGHT)) + 3;
+    *y = (rand() % (HEIGHT-3)) + 5;
     *x = (rand() % (WIDTH - 13)) + 36;
     gotoxy(0, 0);
     changeColorWhite();
