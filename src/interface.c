@@ -558,6 +558,29 @@ void printInfosInGame(char* nickname, int score, int nFoods){
         printf("000%d", nFoods);
 }
 
+void printGround(){
+    changeColorRed();
+    // Printa o limite superior do campo
+    for (int i = 34; i < WIDTH + 25; i++){
+        gotoxy(i, 4);
+        printf("%c", MURO);
+    }
+
+    // Printa os limites laterais do campo
+    for (int i = 5; i < HEIGHT + 2; i++){
+        gotoxy(34, i);
+        printf("%c", MURO);
+        gotoxy(24+WIDTH, i);
+        printf("%c", MURO);
+    }
+    
+    // Printa o limite inferior do campo
+    for (int i = 34; i < WIDTH + 25; i++){
+        gotoxy(i, 25);
+        printf("%c", MURO);
+    }
+}
+
 void gotoxy(int x, int y){
     COORD c;
     c.X = x;
