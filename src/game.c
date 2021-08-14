@@ -35,7 +35,6 @@ void erasePosition(int x, int y) {
 }
 int ChangeSnake(TSnake snake,TFila *fila){
         TSnake aux;
-        int cod=0;
         Desenfileirar(fila,&aux);
         if(aux.cor==snake.cor){
             for (int i = 0; i < fila->tamanho; i++){
@@ -66,9 +65,57 @@ void StartCobra(TFila *fila){
     changeColorWhite();
     
 }
-
+int getKey(int directions){
+    int tecla = getch();
+    switch (tecla)
+        {
+        case 72://^
+            return 0;
+            break;
+         case 75://<-
+            return 1;
+            break;
+         case 77://->
+            return 2;
+            break;
+         case 80://\/
+            return 3;
+            break;
+         default:
+            return directions;
+            break;
+        }
+}
+void changePositions(int *x,int *y,int directions){
+    gotoxy(0, 0);
+    changeColorWhite();
+    printf("x = %d, y = %d d= %d", *x, *y,directions);
+    switch (directions)
+        {
+        case 0:
+            (*y)--;
+            break;
+         case 1:
+            (*x)--;
+            break;
+         case 2:
+            (*x)++;
+            break;
+         case 3:
+            (*y)++;
+            break;
+        default:
+            break;
+        }
+}
 int gameExe(char* nickname){
-    int foodX,foodY, x = 37, y = 7, score = 4550, nFoods = 12,color;
+    int foodX,foodY,
+        x = (WIDTH/2)+34,
+        y = (HEIGHT/2)+4,
+        score = 4550,
+        speed = 1000,
+        direction=0,
+        color;
     TSnake snake;
     TFila* fila = (TFila *) malloc(sizeof(TFila));
     FFVazia( fila );
@@ -95,45 +142,47 @@ int gameExe(char* nickname){
     printInfosGrid();
     printInfosInGame(nickname, score, fila->tamanho);
     printGround();
-    
-    while (1) {
-        
         snake.cor  = insertFood(&foodX,&foodY);
         snake.codigo = fila->tamanho;
-        while(1){
-            
-           
-            erasePosition(x,y);
-            if(x!=foodX){
-                if(x<foodX){
-                    x++;
-                }else{
-                    x--;
-                }
-            }
-            if(y!=foodY){
-                if(y<foodY){
-                    y++;
-                }else{
-                    y--;
-                }    
-            }
-            walkToPosition(x, y);
-            //CheckFood
-            if(x==foodX&&y==foodY){
-                erasePosition(x,y);
-                ChangeSnake(snake,fila);
-                score += 10*fila->tamanho;
-                printInfosInGame(nickname, score, fila->tamanho);
-                break;
-            }
-            if (x != 37)
-                erasePosition(x-1, y);
-            changeColorWhite();
-            Sleep(100);
+    
+   
+    
+    while(1){
+        
+        Sleep(speed);
+        if(y==4||y==25||x==34||x==(WIDTH+24)){
+            return score;
         }
-        erasePosition(WIDTH + 23, y);
-        x = 37;
-        y = 7;
+        erasePosition(x,y);
+        if(kbhit()) direction = getKey(direction);
+        changePositions(&x,&y,direction);
+        //CheckFood
+        if(x==foodX&&y==foodY){
+            erasePosition(x,y);
+            ChangeSnake(snake,fila);
+            score += 10*fila->tamanho;
+            insertFood(&foodX,&foodY);
+            printInfosInGame(nickname, score, fila->tamanho);
+            speed-=20;
+        }
+        //rand()%2==0?x++:x--;
+        //rand()%2==0?y++:y--;
+        /*if(x!=foodX){
+            if(x<foodX){
+                x++;
+            }else{
+                x--;
+            }
+        }
+        if(y!=foodY){
+            if(y<foodY){
+                y++;
+            }else{
+                y--;
+            }    
+        }*/
+        setColor(fila->frente->prox->item.cor);
+        walkToPosition(x, y);
     }
+
 }

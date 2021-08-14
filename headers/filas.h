@@ -7,6 +7,8 @@ typedef struct item
 {
     int codigo;
     int cor;
+    int x;
+    int y;
 } TSnake;
 
 typedef struct celula
