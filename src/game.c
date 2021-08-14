@@ -165,22 +165,10 @@ int gameExe(char* nickname){
             printInfosInGame(nickname, score, fila->tamanho);
             speed-=20;
         }
-        //rand()%2==0?x++:x--;
-        //rand()%2==0?y++:y--;
-        /*if(x!=foodX){
-            if(x<foodX){
-                x++;
-            }else{
-                x--;
-            }
-        }
-        if(y!=foodY){
-            if(y<foodY){
-                y++;
-            }else{
-                y--;
-            }    
-        }*/
+        //random movement snake
+        //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
+        //target food snake
+        //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
         setColor(fila->frente->prox->item.cor);
         walkToPosition(x, y);
     }
