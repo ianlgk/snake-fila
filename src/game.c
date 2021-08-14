@@ -121,22 +121,9 @@ int gameExe(char* nickname){
     FFVazia( fila );
     system("cls");
     StartCobra(fila);
-    //Inicio debbug inserção cobra
-    /*ImprimirFila(fila);
-    printf("\n");
-    snake.cor = getRandomColor();
-    changeColorWhite();
-    snake.codigo = fila->tamanho;
-    ChangeSnake(snake,fila);
-    ImprimirFila(fila);
-    printf("\n");
-    snake.cor = fila->frente->prox->item.cor;
-    snake.codigo = fila->tamanho;
-    ChangeSnake(snake,fila);
-    ImprimirFila(fila);
-    printf("\n");
-    system("pause");*/
-    //fim debbug
+    //debbug fila
+    //ImprimirFila(fila);printf("\n");snake.cor = getRandomColor();changeColorWhite();snake.codigo = fila->tamanho;ChangeSnake(snake,fila);ImprimirFila(fila);
+    //printf("\n");snake.cor = fila->frente->prox->item.cor;snake.codigo = fila->tamanho;ChangeSnake(snake,fila);ImprimirFila(fila);printf("\n");system("pause");
     system("cls");
     printBorders();
     printInfosGrid();
