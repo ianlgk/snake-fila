@@ -5,12 +5,12 @@
 #include <windows.h>
 #include <locale.h>
 #include <time.h>
-
+#include "../headers/filas.h"
 #include "../headers/game.h"
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
-void insertFood(int *x,int *y) {
+int insertFood(int *x,int *y) {
     srand(time(NULL));
     *y = (rand() % (HEIGHT-3)) + 5;
     *x = (rand() % (WIDTH - 13)) + 36;
@@ -18,8 +18,9 @@ void insertFood(int *x,int *y) {
     changeColorWhite();
     printf("x = %d, y = %d", *x, *y);
     gotoxy(*x, *y);
-    getRandomColor();
+    int color = getRandomColor();
     printf("%c", 254);
+    return color;
 }
 
 void walkToPosition(int x, int y) {
@@ -33,10 +34,26 @@ void erasePosition(int x, int y) {
     changeColorBlack();
     printf("%c",255);
 }
+void StartCobra(TFila *fila){
+    int color;
+    TSnake aux;
+    for (int i = 0; i < START_SIZE; i++){
+        color = getRandomColor();
+        aux.codigo = i;
+        aux.cor = color;
+        Enfileirar(aux,fila);
+    }
+    changeColorWhite();
+    ImprimirFila(fila);
+}
 
 int gameExe(char* nickname){
-    int foodX,foodY, x = 37, y = 7, score = 4550, nFoods = 12;
-  
+    int foodX,foodY, x = 37, y = 7, score = 4550, nFoods = 12,color;
+    TSnake snake;
+    TFila* fila = (TFila *) malloc(sizeof(TFila));
+    FFVazia( fila );
+    StartCobra(fila);
+    system("pause");
     system("cls");
 
     printBorders();
@@ -46,7 +63,7 @@ int gameExe(char* nickname){
     
     while (1) {
         
-        insertFood(&foodX,&foodY);
+        color = insertFood(&foodX,&foodY);
         for (x; x < WIDTH +24; x++){
             walkToPosition(x, y);
             if (x != 37)

@@ -6,7 +6,7 @@
 typedef struct item
 {
     int codigo;
-    /* outros campos */
+    int cor;
 } TSnake;
 
 typedef struct celula

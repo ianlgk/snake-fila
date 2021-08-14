@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../headers/filas.h"
+#include "../headers/customization.h"
 
 void FFVazia(TFila *Fila)
 {
@@ -36,6 +37,18 @@ void Desenfileirar(TFila *Fila, TSnake *Item){
         if (Fila->frente->prox == NULL)
             Fila->tras = Fila->frente;
         Fila->tamanho--;
+    }
+}
+void ImprimirFila(TFila *Fila){
+    TSnake auxItem;
+    int N;
+    N = Fila->tamanho;
+    while(N > 0){
+        Desenfileirar(Fila, &auxItem);
+        printf("cod: %d cor: %d\n",auxItem.codigo,auxItem.cor);
+        setColor(auxItem.cor);
+        Enfileirar(auxItem,Fila);
+        N--;
     }
 }
 

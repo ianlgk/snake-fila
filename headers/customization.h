@@ -14,6 +14,7 @@ void changeColorBlack();
 void changeColorBgGreen();
 /* Geradores de Cores */
 
+void setColor(int color);       //coloca uma cor especifica no terminal
 int getRandomColor();             // gera alguma cor aleatória
 /* Functions */
 

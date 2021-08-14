@@ -66,3 +66,26 @@ int getRandomColor(){
     }
     return color;
 }
+void setColor(int color){
+    switch (color)
+    {
+    case 0:
+        changeColorRed();
+        break;
+    case 1:
+        changeColorYellow();
+        break;
+    case 2:
+        changeColorGreen();
+        break;
+    case 3:
+        changeColorPurple();
+        break;
+    case 4:
+        changeColorCyan();
+        break;
+    default:
+        changeColorWhite();
+        break;
+    }
+}

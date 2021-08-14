@@ -4,11 +4,11 @@
 #define HEIGHT 23                   // define a altura do campo
 #define WIDTH 89                    // define a largura do campo
 #define MURO 177                    // define o caractere para desenhar o muro
-
+#define START_SIZE 6 
 /* Functions */
 void walkToPosition();
 void erasePosition();
-void insertFood(int *x,int *y);     // printa uma comida aleatoria no campo
+int insertFood(int *x,int *y);     // printa uma comida aleatoria no campo
 int gameExe(char* nickname);        // executa o jogo da cobra
 /* Functions */
 
