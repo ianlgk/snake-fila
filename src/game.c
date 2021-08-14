@@ -148,7 +148,8 @@ int gameExe(char* nickname){
             erasePosition(x,y);
             ChangeSnake(snake,fila);
             score += 10*fila->tamanho;
-            insertFood(&foodX,&foodY);
+            snake.cor  = insertFood(&foodX,&foodY);
+            snake.codigo = fila->tamanho;   
             printInfosInGame(nickname, score, fila->tamanho);
             speed-=20;
         }
