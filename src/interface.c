@@ -541,6 +541,7 @@ void printInfosGrid(){
 }
 
 void printInfosInGame(char* nickname, int score, int nFoods){
+    changeColorWhite();
     gotoxy(17, 10);
     printf("%s", nickname);
     

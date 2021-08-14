@@ -45,8 +45,8 @@ void ImprimirFila(TFila *Fila){
     N = Fila->tamanho;
     while(N > 0){
         Desenfileirar(Fila, &auxItem);
-        printf("cod: %d cor: %d\n",auxItem.codigo,auxItem.cor);
         setColor(auxItem.cor);
+        printf("cod: %d cor: %d\n",auxItem.codigo,auxItem.cor);
         Enfileirar(auxItem,Fila);
         N--;
     }
