@@ -25,7 +25,7 @@ int insertFood(int *x,int *y) {
 
 void walkToPosition(int x, int y) {
     gotoxy(x, y);
-    printf("%c",254);
+    printf("%c",219);
 }
 
 void erasePosition(int x, int y) {
@@ -113,7 +113,7 @@ int gameExe(char* nickname){
         x = (WIDTH/2)+34,
         y = (HEIGHT/2)+4,
         score = 4550,
-        speed = 700,
+        speed = 400,
         direction=0,
         color;
     TSnake snake;
@@ -129,8 +129,8 @@ int gameExe(char* nickname){
     printInfosGrid();
     printInfosInGame(nickname, score, fila->tamanho);
     printGround();
-        snake.cor  = insertFood(&foodX,&foodY);
-        snake.codigo = fila->tamanho;
+    snake.cor  = insertFood(&foodX,&foodY);
+    snake.codigo = fila->tamanho;
     
    
     
@@ -138,29 +138,30 @@ int gameExe(char* nickname){
         while(!kbhit()){
 
         Sleep(speed);
-        
-        if(y==4||y==25||x==34||x==(WIDTH+24)){
-            return score;
-        }
-        erasePosition(x,y);
-        
-        changePositions(&x,&y,direction);
-        //CheckFood
-        if(x==foodX&&y==foodY){
-            erasePosition(x,y);
-            ChangeSnake(snake,fila);
-            score += 10*fila->tamanho;
-            snake.cor  = insertFood(&foodX,&foodY);
-            snake.codigo = fila->tamanho;   
-            printInfosInGame(nickname, score, fila->tamanho);
-            speed-=5;
-        }
-        //random movement snake
-        //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
-        //target food snake
-        //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
-        setColor(fila->frente->prox->item.cor);
-        walkToPosition(x, y);
+            
+            if(y==4||y==25||x==34||x==(WIDTH+24)){
+                LiberarFila(fila);
+                return score;
+            }
+            //erasePosition(x,y);
+            
+            changePositions(&x,&y,direction);
+            //CheckFood
+            if(x==foodX&&y==foodY){
+                erasePosition(x,y);
+                ChangeSnake(snake,fila);
+                score += 10*fila->tamanho;
+                snake.cor  = insertFood(&foodX,&foodY);
+                snake.codigo = fila->tamanho;   
+                printInfosInGame(nickname, score, fila->tamanho);
+                speed-=5;
+            }
+            //random movement snake
+            //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
+            //target food snake
+            //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
+            setColor(fila->frente->prox->item.cor);
+            walkToPosition(x, y);
         }
         direction = getKey(direction);
     }

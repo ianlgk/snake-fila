@@ -26,7 +26,13 @@ void Enfileirar(TSnake x, TFila *Fila)
     Fila->tras->prox = NULL;
     Fila->tamanho++;
 }
-
+void LiberarFila(TFila *Fila){
+    TSnake auxItem;
+    while(!Vazia(*Fila)){
+        Desenfileirar(Fila, &auxItem);
+    }
+    free(Fila->frente);
+}
 void Desenfileirar(TFila *Fila, TSnake *Item){
     TCelula* aux;
     if (!Vazia(*Fila)){
