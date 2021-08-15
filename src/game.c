@@ -113,7 +113,7 @@ int gameExe(char* nickname){
         x = (WIDTH/2)+34,
         y = (HEIGHT/2)+4,
         score = 4550,
-        speed = 1000,
+        speed = 700,
         direction=0,
         color;
     TSnake snake;
@@ -135,13 +135,15 @@ int gameExe(char* nickname){
    
     
     while(1){
-        
+        while(!kbhit()){
+
         Sleep(speed);
+        
         if(y==4||y==25||x==34||x==(WIDTH+24)){
             return score;
         }
         erasePosition(x,y);
-        if(kbhit()) direction = getKey(direction);
+        
         changePositions(&x,&y,direction);
         //CheckFood
         if(x==foodX&&y==foodY){
@@ -151,7 +153,7 @@ int gameExe(char* nickname){
             snake.cor  = insertFood(&foodX,&foodY);
             snake.codigo = fila->tamanho;   
             printInfosInGame(nickname, score, fila->tamanho);
-            speed-=20;
+            speed-=5;
         }
         //random movement snake
         //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
@@ -159,6 +161,8 @@ int gameExe(char* nickname){
         //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
         setColor(fila->frente->prox->item.cor);
         walkToPosition(x, y);
+        }
+        direction = getKey(direction);
     }
 
 }
