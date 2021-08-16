@@ -10,40 +10,49 @@
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
-void changeColorGreen(){
+void changeColorGreen()
+{
     printf("\033[0;32m");
 }
 
-void changeColorYellow(){
+void changeColorYellow()
+{
     printf("\033[0;33m");
 }
 
-void changeColorPurple(){
+void changeColorPurple()
+{
     printf("\033[0;35m");
 }
 
-void changeColorCyan(){
+void changeColorCyan()
+{
     printf("\033[0;36m");
 }
 
-void changeColorWhite(){
+void changeColorWhite()
+{
     printf("\033[0m");
 }
 
-void changeColorBlack(){
+void changeColorBlack()
+{
     printf("\033[0;30m");
 }
 
-void changeColorRed(){
+void changeColorRed()
+{
     printf("\033[0;31m");
 }
 
-void changeColorBgGreen(){
+void changeColorBgGreen()
+{
     printf("\e[42m");
 }
 
-int getRandomColor(){
-    int color =rand()%5;
+int getRandomColor()
+{
+    int color = rand() % 5;
     switch (color)
     {
     case 0:
@@ -68,7 +77,8 @@ int getRandomColor(){
     return color;
 }
 
-void setColor(int color){
+void setColor(int color)
+{
     switch (color)
     {
     case 0:

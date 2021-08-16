@@ -4,7 +4,7 @@
 /* Functions */
 
 /* Geradores de Cores */
-void changeColorRed();      
+void changeColorRed();
 void changeColorGreen();
 void changeColorYellow();
 void changeColorPurple();
@@ -14,8 +14,8 @@ void changeColorBlack();
 void changeColorBgGreen();
 /* Geradores de Cores */
 
-void setColor(int color);       //coloca uma cor especifica no terminal
-int getRandomColor();             // gera alguma cor aleatória
+void setColor(int color); //coloca uma cor especifica no terminal
+int getRandomColor();     // gera alguma cor aleatória
 /* Functions */
 
-# endif /* CUSTOMIZATION_H_INCLUDED */
+#endif /* CUSTOMIZATION_H_INCLUDED */

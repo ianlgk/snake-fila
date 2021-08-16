@@ -11,32 +11,39 @@
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
-int insertFood(int *x, int *y,TSnake* snake,TSnake* poop)
-{   
-    int a=0;
+int insertFood(int *x, int *y, TSnake *snake, TSnake *poop)
+{
+    int a = 0;
     TBody aux;
     srand(time(NULL));
-    do{
+
+    do
+    {
         *y = (rand() % (HEIGHT - 3)) + 5;
         *x = (rand() % (WIDTH - 13)) + 36;
-        for (int i = 0; i < snake->size; i++){
-            dequeue(snake,&aux);
-            if(*x==aux.x&&*y==aux.y){
-                a=1;
+        for (int i = 0; i < snake->size; i++)
+        {
+            dequeue(snake, &aux);
+            if (*x == aux.x && *y == aux.y)
+            {
+                a = 1;
                 continue;
             }
-            enqueue(aux,snake);
+            enqueue(aux, snake);
         }
-        for (int i = 0; i < poop->size; i++){
-            dequeue(poop,&aux);
-            if(*x==aux.x&&*y==aux.y){
-                a=1;
+        for (int i = 0; i < poop->size; i++)
+        {
+            dequeue(poop, &aux);
+            if (*x == aux.x && *y == aux.y)
+            {
+                a = 1;
                 continue;
             }
-            enqueue(aux,poop);
+            enqueue(aux, poop);
         }
-        a=0;
-    }while(a);
+        a = 0;
+    } while (a);
+
     gotoxy(0, 1);
     changeColorWhite();
     printf("x = %d, y = %d", *x, *y);
@@ -133,13 +140,13 @@ int gameExe(char *nickname)
     beginSnake(snake);
     system("cls");
     createCobra(snake, x, y);
-    
+
     system("cls");
     printBorders();
     printInfosGrid();
     printInfosInGame(nickname, score, snake->size);
     printGround();
-    food.color = insertFood(&food.x, &food.y,snake,poopWall);
+    food.color = insertFood(&food.x, &food.y, snake, poopWall);
     food.code = snake->size;
 
     while (1)
@@ -164,10 +171,11 @@ int gameExe(char *nickname)
             {
                 changeSnake(food, snake, poopWall);
                 score += 10 * snake->size;
-                food.color = insertFood(&food.x, &food.y,snake,poopWall);
+                food.color = insertFood(&food.x, &food.y, snake, poopWall);
                 food.code = snake->size;
                 printInfosInGame(nickname, score, snake->size);
-                if(speed>80)speed -= 5;
+                if (speed > 80)
+                    speed -= 5;
             }
 
             dequeue(snake, &body);
@@ -178,6 +186,7 @@ int gameExe(char *nickname)
             enqueue(body, snake);
             setColor(body.color);
             walkToPosition(x, y);
+
             for (int i = 0; i < poopWall->size; i++)
             {
                 dequeue(poopWall, &poopAux);
@@ -190,6 +199,7 @@ int gameExe(char *nickname)
                 }
                 enqueue(poopAux, poopWall);
             }
+
             for (int i = 1; i < snake->size; i++)
             {
                 dequeue(snake, &body);
@@ -218,11 +228,3 @@ int gameExe(char *nickname)
         direction = getKey(direction);
     }
 }
-
-//random movement snake
-//rand()%2==0?x++:x--;rand()%2==0?y++:y--;
-//target food snake
-//if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
-//debbug snake
-//printSnake(snake);printf("\n");snake.color = getRandomColor();changeColorWhite();snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);
-//printf("\n");snake.color = snake->front->next->body.color;snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);printf("\n");system("pause");

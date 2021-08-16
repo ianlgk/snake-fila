@@ -8,7 +8,8 @@
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
-void gameInformations(){
+void gameInformations()
+{
     system("cls");
     printBorders();
     gotoxy(51, 14);
@@ -24,9 +25,11 @@ void gameInformations(){
     Sleep(3000);
 }
 
-int mainMenu(){
+int mainMenu()
+{
     int key, x, y;
-    x = 27; y = 20;
+    x = 27;
+    y = 20;
 
     system("cls");
     printBorders();
@@ -38,99 +41,120 @@ int mainMenu(){
     gotoxy(83, 20);
     printf(" SAIR");
 
-    do{
+    do
+    {
         gotoxy(x, y);
         changeColorGreen();
         printf("%c", 175);
         changeColorWhite();
         gotoxy(3, 28);
         key = getch();
-        switch(key){
-            case 13:                                        // quando pressiona enter
-                switch(x){                                  // retorna a opção selecionada
-                    case 27:
-                        gotoxy(27, 20);
-                        printf("       ");
-                        gotoxy(83, 20);
-                        printf("      ");
-                        gotoxy(43, 20);
-                        changeColorGreen();
-                        printf("%c", 175);
-                        changeColorWhite();
-                        return 1;
-                        break;
-                    case 53:
-                        return 2;
-                        break;
-                    case 82:
-                        return 3;
-                        break;
-                    default:
-                        break;
-                }
+        switch (key)
+        {
+        case 13: // quando pressiona enter
+            switch (x)
+            { // retorna a opção selecionada
+            case 27:
+                gotoxy(27, 20);
+                printf("       ");
+                gotoxy(83, 20);
+                printf("      ");
+                gotoxy(43, 20);
+                changeColorGreen();
+                printf("%c", 175);
+                changeColorWhite();
+                return 1;
                 break;
-            case 75:                                            // quando pressiona <-
-                if(x != 27){
-                    if(x == 82){
-                        gotoxy(x, y);
-                        printf("  ");
-                        x -= 29;
-                    } else{
-                        gotoxy(x, y);
-                        printf("  ");
-                        x -= 26;
-                    }
-                } else {
-                    // não faz nada, pois já está na borda
-                }
+            case 53:
+                return 2;
                 break;
-            case 77:                                        // quando pressiona ->
-                if(x != 82){
-                    if(x == 27){
-                        gotoxy(x, y);
-                        printf("  ");
-                        x += 26;
-                    } else{
-                        gotoxy(x, y);
-                        printf("  ");
-                        x += 29;
-                    }
-                } else {
-                    // não faz nada, pois já está na borda
-                }
+            case 82:
+                return 3;
                 break;
             default:
                 break;
+            }
+            break;
+        case 75: // quando pressiona <-
+            if (x != 27)
+            {
+                if (x == 82)
+                {
+                    gotoxy(x, y);
+                    printf("  ");
+                    x -= 29;
+                }
+                else
+                {
+                    gotoxy(x, y);
+                    printf("  ");
+                    x -= 26;
+                }
+            }
+            else
+            {
+                // não faz nada, pois já está na borda
+            }
+            break;
+        case 77: // quando pressiona ->
+            if (x != 82)
+            {
+                if (x == 27)
+                {
+                    gotoxy(x, y);
+                    printf("  ");
+                    x += 26;
+                }
+                else
+                {
+                    gotoxy(x, y);
+                    printf("  ");
+                    x += 29;
+                }
+            }
+            else
+            {
+                // não faz nada, pois já está na borda
+            }
+            break;
+        default:
+            break;
         }
-    } while(key != 13);
-    
+    } while (key != 13);
+
     printf("\n\n");
 }
 
-void printTitle(){
+void printTitle()
+{
     // Bordas do título
     changeColorRed();
-    for (int i = 22; i < 96; i++){
+    for (int i = 22; i < 96; i++)
+    {
         gotoxy(i, 7);
         printf("%c", 219);
     }
-    
-    for (int i = 7; i < 18; i++){
+
+    for (int i = 7; i < 18; i++)
+    {
         gotoxy(22, i);
         printf("%c", 219);
         gotoxy(96 - 1, i);
         printf("%c\n", 219);
     }
-    
-    for (int i = 22; i < 96; i++){
+
+    for (int i = 22; i < 96; i++)
+    {
         gotoxy(i, 17);
         printf("%c", 219);
     }
 
     // Preencher o background do título
     changeColorCyan();
-    for (int i = 23; i < 95; i++){
-        for (int j = 8; j < 17; j++){
+    for (int i = 23; i < 95; i++)
+    {
+        for (int j = 8; j < 17; j++)
+        {
             gotoxy(i, j);
             printf("%c", 219);
         }
@@ -385,7 +409,8 @@ void printTitle(){
     // C
 }
 
-void creditsMenu(){
+void creditsMenu()
+{
     system("cls");
     printBorders();
     gotoxy(34, 9);
@@ -416,44 +441,50 @@ void creditsMenu(){
     Sleep(5000);
 }
 
-void printBorders(){
+void printBorders()
+{
     changeColorWhite();
 
-    for (int i = 3; i < BORDER_WIDTH; i++){
+    for (int i = 3; i < BORDER_WIDTH; i++)
+    {
         gotoxy(i, 2);
-        if(i == 3)
+        if (i == 3)
             printf("%c", 201);
-        else if(i + 1 == BORDER_WIDTH)
+        else if (i + 1 == BORDER_WIDTH)
             printf("%c", 187);
         else
             printf("%c", 205);
     }
 
-    for (int i = 3; i < BORDER_HEIGHT + 3; i++){
+    for (int i = 3; i < BORDER_HEIGHT + 3; i++)
+    {
         gotoxy(3, i);
         printf("%c", 186);
         gotoxy(BORDER_WIDTH - 1, i);
         printf("%c\n", 186);
     }
 
-    for (int i = 3; i < BORDER_WIDTH; i++){
+    for (int i = 3; i < BORDER_WIDTH; i++)
+    {
         gotoxy(i, BORDER_HEIGHT + 2);
-        if(i == 3)
+        if (i == 3)
             printf("%c", 200);
-        else if(i + 1 == BORDER_WIDTH)
+        else if (i + 1 == BORDER_WIDTH)
             printf("%c", 188);
         else
             printf("%c", 205);
     }
 }
 
-void printInfosGrid(){
+void printInfosGrid()
+{
     gotoxy(6, 4);
     printf("%c", 201);
 
     // Printa limite superior
-    for (int i = 7; i < 31; i++){
-        gotoxy(i , 4);
+    for (int i = 7; i < 31; i++)
+    {
+        gotoxy(i, 4);
         printf("%c", 205);
     }
 
@@ -463,62 +494,69 @@ void printInfosGrid(){
     printf("%c", 200);
 
     // Printa os limites laterais
-    for (int i = 5; i < 25; i++){
+    for (int i = 5; i < 25; i++)
+    {
         // Printa as bordas com saídas laterais
-        switch(i){
-            case 8:
-                gotoxy(6, i);
-                printf("%c", 204);
-                gotoxy(31, i);
-                printf("%c", 185);
-                break;
-            case 12:
-                gotoxy(6, i);
-                printf("%c", 204);
-                gotoxy(31, i);
-                printf("%c", 185);
-                break;
-            case 16:
-                gotoxy(6, i);
-                printf("%c", 204);
-                gotoxy(31, i);
-                printf("%c", 185);
-                break;
-            default:
-                gotoxy(6, i);
-                printf("%c", 186);
-                gotoxy(31, i);
-                printf("%c", 186);
-                break;
+        switch (i)
+        {
+        case 8:
+            gotoxy(6, i);
+            printf("%c", 204);
+            gotoxy(31, i);
+            printf("%c", 185);
+            break;
+        case 12:
+            gotoxy(6, i);
+            printf("%c", 204);
+            gotoxy(31, i);
+            printf("%c", 185);
+            break;
+        case 16:
+            gotoxy(6, i);
+            printf("%c", 204);
+            gotoxy(31, i);
+            printf("%c", 185);
+            break;
+        default:
+            gotoxy(6, i);
+            printf("%c", 186);
+            gotoxy(31, i);
+            printf("%c", 186);
+            break;
         }
     }
-    
+
     gotoxy(31, 25);
     printf("%c", 188);
 
     // Printa o limite inferior
-    for (int i = 7; i < 31; i++){
-        gotoxy(i , 25);
+    for (int i = 7; i < 31; i++)
+    {
+        gotoxy(i, 25);
         printf("%c", 205);
     }
 
     // Printa divisão de informações
-    for (int i = 7; i < 31; i++){
+    for (int i = 7; i < 31; i++)
+    {
         gotoxy(i, 8);
         printf("%c", 205);
     }
 
-    for (int i = 7; i < 31; i++){
+    for (int i = 7; i < 31; i++)
+    {
         gotoxy(i, 12);
         printf("%c", 205);
     }
 
-    for (int i = 7; i < 31; i++){
+    for (int i = 7; i < 31; i++)
+    {
         gotoxy(i, 16);
         printf("%c", 205);
     }
 
-    for (int i = 7; i < 31; i++){
+    for (int i = 7; i < 31; i++)
+    {
         gotoxy(i, 23);
         printf("%c", 205);
     }
@@ -535,62 +573,70 @@ void printInfosGrid(){
     printf(" - AEDS I");
     gotoxy(8, 10);
     printf("Player: ");
-    gotoxy(8,14);
+    gotoxy(8, 14);
     printf(" SCORE ");
     gotoxy(14, 19);
     printf("SNAKE SIZE");
 }
 
-void printInfosInGame(char* nickname, int score, int snakeSize){
+void printInfosInGame(char *nickname, int score, int snakeSize)
+{
     changeColorWhite();
     gotoxy(17, 10);
     printf("%s", nickname);
-    
+
     gotoxy(17, 14);
     printf("%d", score);
 
     gotoxy(17, 20);
-    if(snakeSize >= 1000)
+    if (snakeSize >= 1000)
         printf("%d", snakeSize);
-    else if(snakeSize >= 100)
+    else if (snakeSize >= 100)
         printf("0%d", snakeSize);
-    else if(snakeSize >= 10)
+    else if (snakeSize >= 10)
         printf("00%d", snakeSize);
     else
         printf("000%d", snakeSize);
 }
 
-void printGround(){
+void printGround()
+{
     changeColorRed();
     // Printa o limite superior do campo
-    for (int i = 34; i < WIDTH + 25; i++){
+    for (int i = 34; i < WIDTH + 25; i++)
+    {
         gotoxy(i, 4);
         printf("%c", MURO);
     }
 
     // Printa os limites laterais do campo
-    for (int i = 5; i < HEIGHT + 2; i++){
+    for (int i = 5; i < HEIGHT + 2; i++)
+    {
         gotoxy(34, i);
         printf("%c", MURO);
-        gotoxy(24+WIDTH, i);
+        gotoxy(24 + WIDTH, i);
         printf("%c", MURO);
     }
-    
+
     // Printa o limite inferior do campo
-    for (int i = 34; i < WIDTH + 25; i++){
+    for (int i = 34; i < WIDTH + 25; i++)
+    {
         gotoxy(i, 25);
         printf("%c", MURO);
     }
 }
 
-void cleanGround(int *x, int *y) {
+void cleanGround(int *x, int *y)
+{
     changeColorRed();
     gotoxy(*x, *y);
     printf("%c", MURO);
 
     changeColorBlack();
-    for (int i = 35; i < WIDTH + 24; i++){
-        for (int j = 5; j < HEIGHT + 2; j++){
+    for (int i = 35; i < WIDTH + 24; i++)
+    {
+        for (int j = 5; j < HEIGHT + 2; j++)
+        {
             gotoxy(i, j);
             printf("%c", 255);
         }
@@ -599,7 +645,8 @@ void cleanGround(int *x, int *y) {
     changeColorWhite();
 }
 
-void gameOver(int *x, int *y) {
+void gameOver(int *x, int *y)
+{
     cleanGround(x, y);
     gotoxy(70, 14);
     changeColorRed();
@@ -612,9 +659,10 @@ void gameOver(int *x, int *y) {
     system("pause");
 }
 
-void gotoxy(int x, int y){
+void gotoxy(int x, int y)
+{
     COORD c;
     c.X = x;
     c.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
