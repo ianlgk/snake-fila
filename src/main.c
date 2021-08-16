@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]){
     int option;
     char nickname[14];
 
-    gameInformations();
+    //gameInformations();
 
     do {
         option = mainMenu();

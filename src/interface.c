@@ -583,6 +583,22 @@ void printGround(){
     }
 }
 
+void cleanGround(int *x, int *y) {
+    changeColorRed();
+    gotoxy(*x, *y);
+    printf("%c", MURO);
+
+    changeColorBlack();
+    for (int i = 35; i < WIDTH + 24; i++){
+        for (int j = 6; j < HEIGHT + 1; j++){
+            gotoxy(i, j);
+            printf("%c", 254);
+        }
+    }
+
+    changeColorWhite();
+}
+
 void gotoxy(int x, int y){
     COORD c;
     c.X = x;
