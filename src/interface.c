@@ -590,7 +590,7 @@ void cleanGround(int *x, int *y) {
 
     changeColorBlack();
     for (int i = 35; i < WIDTH + 24; i++){
-        for (int j = 6; j < HEIGHT + 1; j++){
+        for (int j = 5; j < HEIGHT + 2; j++){
             gotoxy(i, j);
             printf("%c", 254);
         }
