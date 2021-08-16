@@ -120,7 +120,7 @@ int gameExe(char *nickname)
     int x = (WIDTH / 2) + 34,
         y = (HEIGHT / 2) + 4,
         score = 0,
-        speed = 200,
+        speed = 250,
         direction = 0,
         color;
 
@@ -167,7 +167,7 @@ int gameExe(char *nickname)
                 food.color = insertFood(&food.x, &food.y,snake,poopWall);
                 food.code = snake->size;
                 printInfosInGame(nickname, score, snake->size);
-                speed -= 5;
+                if(speed>80)speed -= 5;
             }
 
             dequeue(snake, &body);
