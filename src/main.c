@@ -3,7 +3,9 @@
 #include <windows.h>
 
 #include "../headers/game.h"
+#include "../headers/snake.h"
 #include "../headers/interface.h"
+#include "../headers/customization.h"
 
 int main(int argc, char const *argv[]){
     system("cls");
@@ -23,7 +25,6 @@ int main(int argc, char const *argv[]){
                 fgets(nickname, 14, stdin);
                 nickname[sizeof(nickname) - 1] = '\0';
                 gameExe(nickname);
-                Sleep(1000);
                 break;
             case 2:
                 creditsMenu();
@@ -31,7 +32,7 @@ int main(int argc, char const *argv[]){
             case 3:
                 system("cls");
                 printf("Finalizando jogo...\n\n");
-                Sleep(3000);
+                Sleep(1500);
                 break;
             default:
                 break;
