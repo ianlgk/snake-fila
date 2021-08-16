@@ -17,7 +17,7 @@ int isEmpty(TSnake Snake){
     return (Snake.front == Snake.back);
 }
 
-void line(TBody x, TSnake *Snake){
+void enqueue(TBody x, TSnake *Snake){
     Snake->back->next = (TCell*) malloc(sizeof(TCell));
     Snake->back = Snake->back->next;
     Snake->back->body = x;
@@ -28,12 +28,12 @@ void line(TBody x, TSnake *Snake){
 void freeSnake(TSnake *Snake){
     TBody auxBody;
     while(!isEmpty(*Snake)){
-        unline(Snake, &auxBody);
+        dequeue(Snake, &auxBody);
     }
     free(Snake->front);
 }
 
-void unline(TSnake *Snake, TBody *Item){
+void dequeue(TSnake *Snake, TBody *Item){
     TCell* aux;
     if (!isEmpty(*Snake)){
         aux = Snake->front->next;
@@ -51,43 +51,46 @@ void printSnake(TSnake *Snake){
     int N;
     N = Snake->size;
     while(N > 0){
-        unline(Snake, &auxBody);
+        dequeue(Snake, &auxBody);
         setColor(auxBody.color);
         printf("cod: %d color: %d\n",auxBody.code,auxBody.color);
-        line(auxBody,Snake);
+        enqueue(auxBody,Snake);
         N--;
     }
 }
 
 int changeSnake(TBody body,TSnake *snake){
         TBody aux;
-        unline(snake,&aux);
+        dequeue(snake,&aux);
         if(aux.color==body.color){
             for (int i = 0; i < snake->size; i++){
-                unline(snake,&aux);
+                dequeue(snake,&aux);
                 aux.code--;
-                line(aux,snake);
+                enqueue(aux,snake);
             }
             return 0;
         }else{
-            line(aux,snake);
+            enqueue(aux,snake);
             for (int i = 0; i < snake->size-1; i++){
-                unline(snake,&aux);
-                line(aux,snake);
+                dequeue(snake,&aux);
+                enqueue(aux,snake);
             }
-            line(body,snake);
+            enqueue(body,snake);
             return 1;
         }
 }
 
-void createCobra(TSnake *snake){
+void createCobra(TSnake *snake,int x ,int y){
     int color;
     TBody aux;
+    aux.y = y;
     for (int i = 0; i < START_SIZE; i++){
         color = getRandomColor();
         aux.code = i;
         aux.color = color;
-        line(aux,snake);
+        aux.x = x;
+        aux.y = aux.y--;
+        enqueue(aux,snake);
     }
     changeColorWhite();
 }

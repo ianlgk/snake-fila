@@ -14,7 +14,8 @@ void printTitle();                                                  // printa o 
 void printInfosGrid();                                              // durante o jogo, printa as bordas e labels de informações sobre o jogador
 void printInfosInGame(char* nickname, int score, int nFoods);       // printa as informações do jogo
 void printGround();                                                 // printa o campo para a cobra andar
-void cleanGround(int *x, int *y);
+void cleanGround(int *x, int *y);                                   // limpa o campo que a cobra anda
+void gameOver(int *x, int *y);                                      // imprime tela de game over
 /* Functions */
 
 # endif /* INTERFACE_H_INCLUDED */

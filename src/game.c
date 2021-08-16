@@ -26,7 +26,7 @@ int insertFood(int *x,int *y) {
 
 void walkToPosition(int x, int y) {
     gotoxy(x, y);
-    printf("%c", 223);
+    printf("%c", 219);
 }
 
 void erasePosition(int x, int y) {
@@ -87,14 +87,17 @@ int gameExe(char* nickname){
         score = 0,
         speed = 200,
         direction = 0,
-        color;
-    TBody body;
+        color,
+        auX,
+        auY
+        ;
+    TBody food,body,bodyAux,temp;
     TSnake* snake = (TSnake *) malloc(sizeof(TSnake));
     /* important variables */
 
     beginSnake(snake);
     system("cls");
-    createCobra(snake);
+    createCobra(snake,x,y);
     //debbug snake
     //printSnake(snake);printf("\n");snake.color = getRandomColor();changeColorWhite();snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);
     //printf("\n");snake.color = snake->front->next->body.color;snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);printf("\n");system("pause");
@@ -103,50 +106,69 @@ int gameExe(char* nickname){
     printInfosGrid();
     printInfosInGame(nickname, score, snake->size);
     printGround();
-    body.color  = insertFood(&foodX,&foodY);
-    body.code = snake->size;
+    food.color  = insertFood(&foodX,&foodY);
+    food.code = snake->size;
     
     while(1){
         gotoxy(3, 29);
         while(!kbhit()){
-            
+            //check collision
             if(y == 4 || y == 25 || x == 34 || x == (WIDTH + 24)){
                 freeSnake(snake);
-                cleanGround(&x, &y);
-                gotoxy(70, 15);
-                changeColorRed();
-                printf("GAME OVER");
-                changeColorWhite();
-                gotoxy(54, 20);
-                system("pause");
-                gotoxy(3, 29);
+                gameOver(&x, &y);
                 return score;
             }
-            //erasePosition(x,y);
+        
 
             Sleep(speed);
             
-            changePositions(&x,&y,direction);
+            
             //CheckFood
+            
             if(x==foodX&&y==foodY){
-                erasePosition(x,y);
-                changeSnake(body, snake);
+                changeSnake(food, snake);
                 score += 10*snake->size;
-                body.color  = insertFood(&foodX,&foodY);
-                body.code = snake->size;   
+                food.color  = insertFood(&foodX,&foodY);
+                food.code = snake->size;   
                 printInfosInGame(nickname, score, snake->size);
                 speed-=5;
             }
-
-            //random movement snake
-            //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
-            //target food snake
-            //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
-
-            setColor(snake->front->next->body.color);
+            
+            dequeue(snake,&body);
+            bodyAux = body;
+            changePositions(&x,&y,direction);
+            body.x = x;
+            body.y = y;
+            enqueue(body,snake);
+            setColor(body.color);
             walkToPosition(x, y);
-            gotoxy(3, 29);
+            for(int i=1; i<snake->size; i++){
+                dequeue(snake,&body);
+                temp.x=body.x;
+                temp.y=body.y;
+                body.x=bodyAux.x;
+                body.y=bodyAux.y;
+                bodyAux.x = temp.x;
+                bodyAux.y = temp.y;
+                setColor(body.color);
+                walkToPosition(body.x, body.y);
+                enqueue(body,snake);
+                //collision snake snake
+                if(x==body.x&&y==body.y){
+                    freeSnake(snake);
+                    gameOver(&x, &y);
+                    return score;
+                }
+            }
+            erasePosition(bodyAux.x,bodyAux.y);
+            gotoxy(3, 29);  
         }
         direction = getKey(direction);
     }
 }
+
+ //random movement snake
+            //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
+            //target food snake
+            //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
+            //for (int i = 0; i < snake->size; i++) {

@@ -541,7 +541,7 @@ void printInfosGrid(){
     printf("SNAKE SIZE");
 }
 
-void printInfosInGame(char* nickname, int score, int nFoods){
+void printInfosInGame(char* nickname, int score, int snakeSize){
     changeColorWhite();
     gotoxy(17, 10);
     printf("%s", nickname);
@@ -550,14 +550,14 @@ void printInfosInGame(char* nickname, int score, int nFoods){
     printf("%d", score);
 
     gotoxy(17, 20);
-    if(nFoods >= 1000)
-        printf("%d", nFoods);
-    else if(nFoods >= 100)
-        printf("0%d", nFoods);
-    else if(nFoods >= 10)
-        printf("00%d", nFoods);
+    if(snakeSize >= 1000)
+        printf("%d", snakeSize);
+    else if(snakeSize >= 100)
+        printf("0%d", snakeSize);
+    else if(snakeSize >= 10)
+        printf("00%d", snakeSize);
     else
-        printf("000%d", nFoods);
+        printf("000%d", snakeSize);
 }
 
 void printGround(){
@@ -592,11 +592,24 @@ void cleanGround(int *x, int *y) {
     for (int i = 35; i < WIDTH + 24; i++){
         for (int j = 5; j < HEIGHT + 2; j++){
             gotoxy(i, j);
-            printf("%c", 254);
+            printf("%c", 255);
         }
     }
 
     changeColorWhite();
+}
+
+void gameOver(int *x, int *y) {
+    cleanGround(x, y);
+    gotoxy(70, 14);
+    changeColorRed();
+    printf("GAME OVER");
+    changeColorWhite();
+    gotoxy(59, 18);
+    printf("Veja a sua pontuacao a esquerda!");
+    Sleep(1500);
+    gotoxy(54, 22);
+    system("pause");
 }
 
 void gotoxy(int x, int y){
