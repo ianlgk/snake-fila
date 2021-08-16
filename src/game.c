@@ -113,11 +113,13 @@ int gameExe(char* nickname){
             if(y == 4 || y == 25 || x == 34 || x == (WIDTH + 24)){
                 freeSnake(snake);
                 cleanGround(&x, &y);
-                gotoxy(70, 13);
+                gotoxy(70, 15);
                 changeColorRed();
                 printf("GAME OVER");
-                gotoxy(54, 18);
+                changeColorWhite();
+                gotoxy(54, 20);
                 system("pause");
+                gotoxy(3, 29);
                 return score;
             }
             //erasePosition(x,y);
