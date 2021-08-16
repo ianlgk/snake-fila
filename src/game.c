@@ -80,6 +80,7 @@ void changePositions(int *x,int *y,int directions){
 }
 
 int gameExe(char* nickname){
+    /* important variables */
     int foodX,foodY,
         x = (WIDTH/2)+34,
         y = (HEIGHT/2)+4,
@@ -89,6 +90,8 @@ int gameExe(char* nickname){
         color;
     TBody body;
     TSnake* snake = (TSnake *) malloc(sizeof(TSnake));
+    /* important variables */
+
     beginSnake(snake);
     system("cls");
     createCobra(snake);
@@ -104,15 +107,22 @@ int gameExe(char* nickname){
     body.code = snake->size;
     
     while(1){
+        gotoxy(3, 29);
         while(!kbhit()){
-
-        Sleep(speed);
             
-            if(y==4||y==25||x==34||x==(WIDTH+24)){
+            if(y == 4 || y == 25 || x == 34 || x == (WIDTH + 24)){
                 freeSnake(snake);
+                cleanGround(&x, &y);
+                gotoxy(70, 13);
+                changeColorRed();
+                printf("GAME OVER");
+                gotoxy(54, 18);
+                system("pause");
                 return score;
             }
             //erasePosition(x,y);
+
+            Sleep(speed);
             
             changePositions(&x,&y,direction);
             //CheckFood
@@ -125,12 +135,15 @@ int gameExe(char* nickname){
                 printInfosInGame(nickname, score, snake->size);
                 speed-=5;
             }
+
             //random movement snake
             //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
             //target food snake
             //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
+
             setColor(snake->front->next->body.color);
             walkToPosition(x, y);
+            gotoxy(3, 29);
         }
         direction = getKey(direction);
     }
