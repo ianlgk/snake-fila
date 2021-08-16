@@ -5,8 +5,9 @@
 #include <windows.h>
 #include <locale.h>
 #include <time.h>
-#include "../headers/filas.h"
+
 #include "../headers/game.h"
+#include "../headers/snake.h"
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
@@ -25,50 +26,18 @@ int insertFood(int *x,int *y) {
 
 void walkToPosition(int x, int y) {
     gotoxy(x, y);
-    printf("%c",219);
+    printf("%c", 223);
 }
 
 void erasePosition(int x, int y) {
     gotoxy(x, y);
     changeColorBlack();
-    printf("%c",255);
+    printf("%c", 255);
 }
-int ChangeSnake(TSnake snake,TFila *fila){
-        TSnake aux;
-        Desenfileirar(fila,&aux);
-        if(aux.cor==snake.cor){
-            for (int i = 0; i < fila->tamanho; i++){
-                Desenfileirar(fila,&aux);
-                aux.codigo--;
-                Enfileirar(aux,fila);
-            }
-            return 0;
-        }else{
-            Enfileirar(aux,fila);
-            for (int i = 0; i < fila->tamanho-1; i++){
-                Desenfileirar(fila,&aux);
-                Enfileirar(aux,fila);
-            }
-            Enfileirar(snake,fila);
-            return 1;
-        }
-}
-void StartCobra(TFila *fila){
-    int color;
-    TSnake aux;
-    for (int i = 0; i < START_SIZE; i++){
-        color = getRandomColor();
-        aux.codigo = i;
-        aux.cor = color;
-        Enfileirar(aux,fila);
-    }
-    changeColorWhite();
-    
-}
+
 int getKey(int directions){
     int tecla = getch();
-    switch (tecla)
-        {
+    switch (tecla) {
         case 72://^
             return 0;
             break;
@@ -84,8 +53,9 @@ int getKey(int directions){
          default:
             return directions;
             break;
-        }
+    }
 }
+
 void changePositions(int *x,int *y,int directions){
     gotoxy(0, 0);
     changeColorWhite();
@@ -108,31 +78,30 @@ void changePositions(int *x,int *y,int directions){
             break;
         }
 }
+
 int gameExe(char* nickname){
     int foodX,foodY,
         x = (WIDTH/2)+34,
         y = (HEIGHT/2)+4,
-        score = 4550,
-        speed = 400,
-        direction=0,
+        score = 0,
+        speed = 200,
+        direction = 0,
         color;
-    TSnake snake;
-    TFila* fila = (TFila *) malloc(sizeof(TFila));
-    FFVazia( fila );
+    TBody body;
+    TSnake* snake = (TSnake *) malloc(sizeof(TSnake));
+    beginSnake(snake);
     system("cls");
-    StartCobra(fila);
-    //debbug fila
-    //ImprimirFila(fila);printf("\n");snake.cor = getRandomColor();changeColorWhite();snake.codigo = fila->tamanho;ChangeSnake(snake,fila);ImprimirFila(fila);
-    //printf("\n");snake.cor = fila->frente->prox->item.cor;snake.codigo = fila->tamanho;ChangeSnake(snake,fila);ImprimirFila(fila);printf("\n");system("pause");
+    createCobra(snake);
+    //debbug snake
+    //printSnake(snake);printf("\n");snake.color = getRandomColor();changeColorWhite();snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);
+    //printf("\n");snake.color = snake->front->next->body.color;snake.code = snake->size;changeSnake(snake,snake);printSnake(snake);printf("\n");system("pause");
     system("cls");
     printBorders();
     printInfosGrid();
-    printInfosInGame(nickname, score, fila->tamanho);
+    printInfosInGame(nickname, score, snake->size);
     printGround();
-    snake.cor  = insertFood(&foodX,&foodY);
-    snake.codigo = fila->tamanho;
-    
-   
+    body.color  = insertFood(&foodX,&foodY);
+    body.code = snake->size;
     
     while(1){
         while(!kbhit()){
@@ -140,7 +109,7 @@ int gameExe(char* nickname){
         Sleep(speed);
             
             if(y==4||y==25||x==34||x==(WIDTH+24)){
-                LiberarFila(fila);
+                freeSnake(snake);
                 return score;
             }
             //erasePosition(x,y);
@@ -149,21 +118,20 @@ int gameExe(char* nickname){
             //CheckFood
             if(x==foodX&&y==foodY){
                 erasePosition(x,y);
-                ChangeSnake(snake,fila);
-                score += 10*fila->tamanho;
-                snake.cor  = insertFood(&foodX,&foodY);
-                snake.codigo = fila->tamanho;   
-                printInfosInGame(nickname, score, fila->tamanho);
+                changeSnake(body, snake);
+                score += 10*snake->size;
+                body.color  = insertFood(&foodX,&foodY);
+                body.code = snake->size;   
+                printInfosInGame(nickname, score, snake->size);
                 speed-=5;
             }
             //random movement snake
             //rand()%2==0?x++:x--;rand()%2==0?y++:y--;
             //target food snake
             //if(x!=foodX){if(x<foodX){x++;}else{x--;}}if(y!=foodY){if(y<foodY){y++;}else{y--;}}
-            setColor(fila->frente->prox->item.cor);
+            setColor(snake->front->next->body.color);
             walkToPosition(x, y);
         }
         direction = getKey(direction);
     }
-
 }

@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "../headers/game.h"
+#include "../headers/snake.h"
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
@@ -410,7 +411,7 @@ void creditsMenu(){
     printf("Repositorio:");
     gotoxy(49, 19);
     changeColorWhite();
-    printf("github.com/LeoMoreiraS/snake-fila");
+    printf("github.com/LeoMoreiraS/snake-snake");
     gotoxy(3, 28);
     Sleep(5000);
 }

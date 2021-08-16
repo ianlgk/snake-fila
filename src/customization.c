@@ -6,6 +6,7 @@
 #include <time.h>
 
 #include "../headers/game.h"
+#include "../headers/snake.h"
 #include "../headers/interface.h"
 #include "../headers/customization.h"
 
@@ -66,6 +67,7 @@ int getRandomColor(){
     }
     return color;
 }
+
 void setColor(int color){
     switch (color)
     {
