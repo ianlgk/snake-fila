@@ -71,22 +71,22 @@ int getKey(int directions)
     int tecla = getch();
     switch (tecla)
     {
-    case 72: //^
+    case 72: // Quando o usuário digita a tecla de seta para cima (^)
         if (directions == 3)
             return directions;
         return 0;
         break;
-    case 75: //<-
+    case 75: // Quando o usuário digita a tecla de seta para esquerda (<-)
         if (directions == 2)
             return directions;
         return 1;
         break;
-    case 77: //->
+    case 77: // Quando o usuário digita a tecla de seta para direita (->)
         if (directions == 1)
             return directions;
         return 2;
         break;
-    case 80: //\/
+    case 80: // Quando o usuário digita a tecla de seta para baixo (\/)
         if (directions == 0)
             return directions;
         return 3;
@@ -123,7 +123,7 @@ void changePositions(int *x, int *y, int directions)
 
 int gameExe(char *nickname)
 {
-    /* important variables */
+    /* Variáveis importantes */
     int x = (WIDTH / 2) + 34,
         y = (HEIGHT / 2) + 4,
         score = 0,
@@ -135,7 +135,6 @@ int gameExe(char *nickname)
     TSnake *snake = (TSnake *)malloc(sizeof(TSnake));
     TSnake *poopWall = (TSnake *)malloc(sizeof(TSnake));
 
-    /* important variables */
     beginSnake(poopWall);
     beginSnake(snake);
     system("cls");
@@ -154,7 +153,8 @@ int gameExe(char *nickname)
         gotoxy(3, 29);
         while (!kbhit())
         {
-            //check collision
+
+            // Checa colisão com a parede do campo
             if (y == 4 || y == 25 || x == 34 || x == (WIDTH + 24))
             {
                 freeSnake(snake);
@@ -165,8 +165,7 @@ int gameExe(char *nickname)
 
             Sleep(speed);
 
-            //CheckFood
-
+            // Checa comida ingerida
             if (x == food.x && y == food.y)
             {
                 changeSnake(food, snake, poopWall);
@@ -212,7 +211,8 @@ int gameExe(char *nickname)
                 setColor(body.color);
                 walkToPosition(body.x, body.y);
                 enqueue(body, snake);
-                //collision snake snake
+
+                // Checa colisão entre o corpo da cobra
                 if (x == body.x && y == body.y)
                 {
                     freeSnake(snake);
@@ -221,6 +221,7 @@ int gameExe(char *nickname)
                     return score;
                 }
             }
+
             erasePosition(bodyAux.x, bodyAux.y);
             gotoxy(3, 29);
         }

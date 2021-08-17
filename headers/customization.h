@@ -1,7 +1,7 @@
 #ifndef CUSTOMIZATION_H_INCLUDED
 #define CUSTOMIZATION_H_INCLUDED
 
-/* Functions */
+/* Funções */
 
 /* Geradores de Cores */
 void changeColorRed();
@@ -14,8 +14,9 @@ void changeColorBlack();
 void changeColorBgGreen();
 /* Geradores de Cores */
 
-void setColor(int color); //coloca uma cor especifica no terminal
-int getRandomColor();     // gera alguma cor aleatória
-/* Functions */
+void setColor(int color); // Coloca uma cor especifica no terminal
+int getRandomColor();     // Gera alguma cor aleatória
+
+/* Funções */
 
 #endif /* CUSTOMIZATION_H_INCLUDED */

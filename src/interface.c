@@ -51,9 +51,9 @@ int mainMenu()
         key = getch();
         switch (key)
         {
-        case 13: // quando pressiona enter
+        case 13: // Quando usuário pressiona enter
             switch (x)
-            { // retorna a opção selecionada
+            { // Retorna a opção selecionada
             case 27:
                 gotoxy(27, 20);
                 printf("       ");
@@ -75,7 +75,7 @@ int mainMenu()
                 break;
             }
             break;
-        case 75: // quando pressiona <-
+        case 75: // Quando o usuário digita a tecla de seta para esquerda (<-)
             if (x != 27)
             {
                 if (x == 82)
@@ -93,10 +93,10 @@ int mainMenu()
             }
             else
             {
-                // não faz nada, pois já está na borda
+                // Não faz nada, pois já está na borda
             }
             break;
-        case 77: // quando pressiona ->
+        case 77: // Quando o usuário digita a tecla de seta para direita (->)
             if (x != 82)
             {
                 if (x == 27)
@@ -114,7 +114,7 @@ int mainMenu()
             }
             else
             {
-                // não faz nada, pois já está na borda
+                // Não faz nada, pois já está na borda
             }
             break;
         default:
@@ -162,6 +162,7 @@ void printTitle()
 
     // Escrever SNAKE
     changeColorWhite();
+
     // S
     gotoxy(26, 14);
     printf("%c", 219);
@@ -606,23 +607,23 @@ void printGround()
     for (int i = 34; i < WIDTH + 25; i++)
     {
         gotoxy(i, 4);
-        printf("%c", MURO);
+        printf("%c", WALL);
     }
 
     // Printa os limites laterais do campo
     for (int i = 5; i < HEIGHT + 2; i++)
     {
         gotoxy(34, i);
-        printf("%c", MURO);
+        printf("%c", WALL);
         gotoxy(24 + WIDTH, i);
-        printf("%c", MURO);
+        printf("%c", WALL);
     }
 
     // Printa o limite inferior do campo
     for (int i = 34; i < WIDTH + 25; i++)
     {
         gotoxy(i, 25);
-        printf("%c", MURO);
+        printf("%c", WALL);
     }
 }
 
@@ -630,7 +631,7 @@ void cleanGround(int *x, int *y)
 {
     changeColorRed();
     gotoxy(*x, *y);
-    printf("%c", MURO);
+    printf("%c", WALL);
 
     changeColorBlack();
     for (int i = 35; i < WIDTH + 24; i++)
