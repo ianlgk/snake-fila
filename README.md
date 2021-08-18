@@ -1,6 +1,6 @@
 # snake-fila
 
-## Trabalho de Algoritmos e estruturas de dados - UFOP-2021
+## Trabalho de Algoritmos e Estruturas de Dados - UFOP/2021
 
 O trabalho consiste em uma versão do jogo clássico Snake,
 utilizando da estrutura de dados Fila.
